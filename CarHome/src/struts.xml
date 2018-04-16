@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="userAction" extends="struts-default" namespace="/system" strict-method-invocation="false">
+        <action name="list*" class="edu.black.action.system.SystemAction" method="list{1}">
+            <result name="success">list{1}.jsp</result>
+        </action>
+        <action name="delete*" class="edu.black.action.system.SystemAction" method="delete{1}">
+            <result name="success" type="redirectAction">list{1}</result>
+        </action>
+
+    </package>
+</struts>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties>
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/carhome?characterEncoding=utf-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1023123"/>
+    </properties>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--<mapper resource="edu/black/mapper/AuthorityMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/CarsMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/ClientsMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/FactoriesMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/FeedbacksMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/OrdersMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/RolesauthorityMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/RolesMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/StoreMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/UsersMapper.xml"/>-->
+        <!--<mapper resource="edu/black/mapper/UsersroleMapper.xml"/>-->
+        <package name="edu.black.dao"/>
+    </mappers>
+</configuration>

@@ -23,17 +23,17 @@
     <td background="images/tab/bg.gif">&nbsp;</td>
   </tr>
 </table>
-<form  name="user" action="" method="post">
+<form   action="updateuser" method="post">
   <table class="maintable" width="100%" border="0" cellspacing="0">
     <tr>
       <td width="12">&nbsp;</td>
       <td width="128"><div align="right">用户名：</div></td>
-      <td width="638" height="24">${users.useraccessusername}</td>
+      <td width="638" height="24">${users.useraccessname}</td>
     </tr>
     <tr>
       <td width="12">&nbsp;</td>
       <td width="128"><div align="right">用户密码：</div></td>
-      <td height="24"><input type="password" value="${users.useraccesspassword}" </td>
+      <td height="24"><input type="password" name="sers.useraccesspassword" value="${users.useraccesspassword}" /></td>
     </tr>
 	    <tr>
       <td width="12">&nbsp;</td>
@@ -58,7 +58,7 @@
   <table align="right" width="100%">
     <tr>
       <td height="30" width="41"></td>
-      <td width="85"><input type="button" name="Submit" value="返回"></td>
+      <td width="85"><input type="submit" name="Submit" value="保存"></td>
       <td width="94"><div align="center">
           <label>          </label>
         </div></td>

@@ -140,7 +140,11 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public Users getUsers(int id) {
-        return null;
+        SqlSession session = factory.openSession();
+        UsersMapper mapper = session.getMapper(UsersMapper.class);
+        Users user  = mapper.selectByPrimaryKey(id);
+        session.close();
+        return user;
     }
 
     @Override

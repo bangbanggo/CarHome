@@ -129,6 +129,7 @@ public class SystemAction extends ActionSupport {
      * @return
      */
     public String edituser(){
+        rolesList = systemService.queryAllRoles();
         users = systemService.getUsers(id);
         return SUCCESS;
     }

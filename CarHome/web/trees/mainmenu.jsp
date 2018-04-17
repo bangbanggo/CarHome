@@ -79,14 +79,14 @@
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../system/listuser.jsp" target="workspace">用户管理</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../system/listuser" target="workspace">用户管理</a></td>
         </tr>
 
         <tr>
             <td><img src="../images/ftv2vertline.gif"></td>
             <td><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../system/listrole.jsp" target="workspace">角色管理</a></td>
+            <td onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../system/listrole" target="workspace">角色管理</a></td>
         </tr>
 
         <tr>

@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -27,12 +28,12 @@
 <table class="maintable" border="0" width="100%" cellspacing="0">
   <tr>
     <td background="../images/topBarBg.gif">系统管理：用户管理</td>
-    <td width="20" height="23" background="images/topBarBg.gif"><div align="right"><a href="#"><img src="images/iHelp.gif" width="16" height="16" border="0"></a></div></td>
+    <td width="20" height="23" background="../images/topBarBg.gif"><div align="right"><a href="#"><img src="../images/iHelp.gif" width="16" height="16" border="0"></a></div></td>
   </tr>
 </table>
 
 
-  <form action="listuser.jsp" method="post">
+  <form action="deleteuser" method="post">
     <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
       <tr>
         <th width="29"><input type="checkbox" name="checkbox" id="all" value="checkbox" onClick="checkAll()"></th>
@@ -41,48 +42,26 @@
         <th width="224">权限</th>
         <th width="195">编辑</th>
       </tr>
+      <c:forEach items="${usersList}" var="user">
       <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
         <td height="24"><div align="center">
-            <input type="checkbox" name="dels" >
+            <input type="checkbox" name="ids" value="${user.userid}">
         </div></td>
-        <td><div align="center"><a href="viewuser.jsp">蔡毅</a></div></td>
-        <td><div align="center">系统管理员</div></td>
-        <td><div align="center">系统管理~仓库管理~统计管理~销售管理~客户管理</div></td>
-        <td><div align="center"><a href="updateuser.jsp"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
+        <td><div align="center"><a href="viewuser.jsp">${user.username}</a></div></td>
+        <td><div align="center">
+          <c:forEach items="${user.roles}" var="role">
+            ${role.rolename}&nbsp;&nbsp;
+          </c:forEach>
+        </div></td>
+        <td><div align="center">
+          <c:forEach items="${user.authorities}" var="authority">
+            ${authority.authorityname}&nbsp;&nbsp;&nbsp;
+          </c:forEach>
+        </div></td>
+        <td><div align="center"><a href="edituser?id=${user.userid}"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
             <div align="center"></div></td>
       </tr>
-      <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-        <td height="24"><div align="center">
-            <input type="checkbox" name="dels">
-        </div></td>
-        <td><div align="center"><a href="viewuser.jsp">马锋</a></div></td>
-        <td><div align="center">仓库管理员</div></td>
-        <td><div align="center">仓库管理~销售管理</div></td>
-        <td><div align="center"><a href="preupdaterole.do?myid=${dto.rid }"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
-            <div align="center"></div></td>
-      </tr>
-      <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-        <td height="24"><div align="center">
-            <input type="checkbox" name="dels" >
-        </div></td>
-        <td><div align="center"><a href="viewuser.jsp">付强</a></div></td>
-        <td><div align="center">销售管理员</div></td>
-        <td><div align="center">销售管理~客户管理</div></td>
-        <td><div align="center"><a href="preupdaterole.do?myid=${dto.rid }"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
-            <div align="center"></div></td>
-      </tr>
-      
-        <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-          <td height="24"><div align="center">
-              <input type="checkbox" name="dels" >
-          </div></td>
-          <td><div align="center">吕雪松</div></td>
-          <td><div align="center">销售管理员</div></td>
-          <td><div align="center">销售管理~客户管理</div></td>
-          <td><div align="center"><a href="preupdaterole.do"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
-              <div align="center"></div></td>
-        </tr>
-
+      </c:forEach>
     </table>
     <table width="100%">
     <tr>
@@ -91,7 +70,7 @@
         <input type="submit" name="Submit" value="删除">
           </div></td>
       <td width="50"><div align="center">
-        <input type="button" name="Submit" value="添加" onClick="window.location.href='adduser.jsp'">
+        <input type="button" name="Submit" value="添加" onClick="window.location.href='preadduser'">
       </div></td>
       <td width="86"><div align="center">
       </div></td>

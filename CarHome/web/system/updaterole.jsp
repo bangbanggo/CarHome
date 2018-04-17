@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,50 +24,41 @@
     <td background="../images/tab/bg.gif">&nbsp;</td>
   </tr>
 </table>
-<form action="listrole.jsp" method="post">
+<form action="updaterole" method="post">
   <table class="maintable" width="100%" border="0" cellspacing="0">
     <tr>
       <td width="104"><div align="right">角色编号：</div></td>
-      <td height="24" colspan="2">1</td>
-  
+      <td height="24" colspan="2">${roles.roleid}</td>
+      <input type="hidden" name="roles.roleid" value="${roles.roleid}"/>
     </tr>
     <tr>
       <td width="104"><div align="right">角色名称：</div></td>
-      <td width="239" height="24"><input name="roleName" value="系统管理员" type="text" class="inputcontent" id="roleName" size="20">
+      <td width="239" height="24"><input name="roles.rolename" value="${roles.rolename}" type="text" class="inputcontent" id="roleName" size="20">
       </td>
     <td width="435"></td>
     </tr>
     <tr>
       <td width="104"><div align="right">角色描述：</div></td>
-      <td height="24"><textarea name="roleDepict" id="roleDepict">管理整个系统</textarea></td>
+      <td height="24"><textarea name="roles.roledescription" id="roleDepict">${roles.roledescription}</textarea></td>
     <td height="24"></td>
     </tr>
     <tr>
       <td width="104"><div align="right">权限：</div></td>
       <td height="24" colspan="2"><table width="286" border="0">
         <tr>
-          <td width="70" rowspan="4"><select name="select" size="4" id="left" multiple>
-            <option>系统管理</option>
-            <option>仓库管理</option>
-            <option>统计管理</option>
-            <option>销售管理</option>
-            <option>客户管理</option>
-          	
-          </select></td>
-          <td width="95">&nbsp;</td>
-          <td width="107" rowspan="4"><select name="pur" size="4" id="right" multiple>
-		    
-          </select></td>
+          <td width="200" rowspan="4">
+            <c:forEach items="${authorityList}" var="authority">
+              <input type="checkbox" name="roles.authorities.authorityid" value="${authority.authorityid}"
+                <c:forEach items="${roles.authorities}" var="auth">
+                    <c:if test="${authority.authorityid == auth.authorityid}">
+                      checked
+                    </c:if>
+                </c:forEach>
+              /> ${authority.authorityname}<br/>
+            </c:forEach>
+          </td>
         </tr>
-        <tr>
-          <td><input type="button" name="Submit" value="添加 &gt;&gt;" onClick="move('left','right')"></td>
-        </tr>
-        <tr>
-          <td><input type="button" name="Submit" value="&lt;&lt; 删除" onClick="move('right','left')"></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
+
       </table></td>
     </tr>
   </table>

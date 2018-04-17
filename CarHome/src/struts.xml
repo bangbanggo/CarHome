@@ -9,6 +9,20 @@
         <action name="delete*" class="edu.black.action.system.SystemAction" method="delete{1}">
             <result name="success" type="redirectAction">list{1}</result>
         </action>
-
+        <action name="preadd*" class="edu.black.action.system.SystemAction" method="preadd{1}">
+            <result name="success">add{1}.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="add*" class="edu.black.action.system.SystemAction" method="add{1}">
+            <result name="success" type="redirectAction">list{1}</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="edit*" class="edu.black.action.system.SystemAction" method="edit{1}">
+            <result name="success">update{1}.jsp</result>
+        </action>
+        <action name="update*" class="edu.black.action.system.SystemAction" method="update{1}">
+            <result name="success" type="redirectAction">list{1}</result>
+            <result name="error">/error.jsp</result>
+        </action>
     </package>
 </struts>

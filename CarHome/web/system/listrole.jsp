@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -27,12 +28,12 @@
 <table class="maintable" border="0" width="100%" cellspacing="0">
   <tr>
     <td background="../images/topBarBg.gif">系统管理：角色管理</td>
-    <td width="20" height="23" background="images/topBarBg.gif"><div align="right"><a href="#"><img src="images/iHelp.gif" width="16" height="16" border="0"></a></div></td>
+    <td width="20" height="23" background="images/topBarBg.gif"><div align="right"><a href="#"><img src="../images/iHelp.gif" width="16" height="16" border="0"></a></div></td>
   </tr>
 </table>
 
 
-  <form action="delrole.do" method="post">
+  <form action="deleterole" method="post">
     <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
       <tr>
         <th width="61"><div align="center">
@@ -44,57 +45,27 @@
         <th width="348"><div align="center">权限</div></th>
         <th width="168">编辑</th>
       </tr>
+      <c:forEach items="${rolesList}" var="role">
       <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
         <td height="24"><div align="center">
-            <input type="checkbox" name="dels" value="${dto.rid }">
+            <input type="checkbox" name="ids" value="${role.roleid}">
         </div></td>
-        <td><div align="center">1</div></td>
-        <td><div align="center"><a href="viewrole.jsp">系统管理员</a></div></td>
-        <td><div align="center">管理整个系统</div></td>
-        <td><div align="center">
-            <div align="center">
-              <div align="center">系统管理~仓库管理~统计管理~销售管理~客户管理</div>
-            </div>
-        </div></td>
-        <td><div align="center"><a href="updaterole.jsp"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
-            <div align="center"></div></td>
-      </tr>
-      <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-        <td height="24"><div align="center">
-            <input type="checkbox" name="dels">
-        </div></td>
-        <td><div align="center">2</div></td>
-        <td><div align="center"><a href="viewrole.do">仓库管理员</a></div></td>
-        <td><div align="center">管理仓库信息</div></td>
+        <td><div align="center">${role.roleid}</div></td>
+        <td><div align="center"><a href="viewrole.jsp">${role.rolename}</a></div></td>
+        <td><div align="center">${role.roledescription}</div></td>
         <td><div align="center">
             <div align="center">
               <div align="center">
-                <DIV align="center">仓库管理~销售管理</DIV>
+                <c:forEach items="${role.authorities}" var="authority">
+                  ${authority.authorityname}&nbsp;&nbsp;&nbsp;
+                </c:forEach>
               </div>
             </div>
         </div></td>
-        <td><div align="center"><a href="preupdaterole.do"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
+        <td><div align="center"><a href="editrole?id=${role.roleid}"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
             <div align="center"></div></td>
       </tr>
-      
-        <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-          <td height="24"><div align="center">
-              <input type="checkbox" name="dels"">
-          </div></td>
-          <td><div align="center">3</div></td>
-          <td><div align="center"><a href="viewrole.do">销售管理员</a></div></td>
-          <td><div align="center">管理客户信息</div></td>
-          <td><div align="center">
-              <div align="center">
-                <div align="center">
-                  <DIV align="center">销售管理~客户管理</DIV>
-                </div>
-              </div>
-          </div></td>
-          <td><div align="center"><a href="preupdaterole.do"><img src="../images/edit.gif" width="16" height="19" border="0"></a></div>
-              <div align="center"></div></td>
-        </tr>
-   
+      </c:forEach>
     </table>
     <table width="100%">
     <tr>
@@ -103,7 +74,7 @@
         <input type="submit" name="Submit" value="删除">
           </div></td>
       <td width="50"><div align="center">
-        <input type="button" name="Submit" value="添加" onClick="window.location.href='preaddrole.do'">
+        <input type="button" name="Submit" value="添加" onClick="window.location.href='preaddrole'">
       </div></td>
       <td width="86"><div align="center">
       </div></td>

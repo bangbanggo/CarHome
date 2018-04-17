@@ -55,4 +55,13 @@ public interface SystemService {
     public boolean updateUsersRoles(Usersrole usersrole);
     public boolean updateRolesAuthority(Rolesauthority rolesauthority);
 
+    /**
+     * 更新表信息
+     * @param authority
+     * @return
+     */
+    public boolean updateAuthority(Authority authority);
+    public boolean updateRoles(Roles Roles);
+    public boolean updateUsers(Users Users);
+
 }

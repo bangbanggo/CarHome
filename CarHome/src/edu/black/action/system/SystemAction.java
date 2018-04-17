@@ -1,6 +1,7 @@
 package edu.black.action.system;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import edu.black.model.Authority;
 import edu.black.model.Roles;
 import edu.black.model.Users;
@@ -20,6 +21,7 @@ public class SystemAction extends ActionSupport {
     private Authority authority;
     private Roles roles;
     private int id;
+    private String message;
     @Override
     public String execute() throws Exception {
         return SUCCESS;
@@ -52,12 +54,26 @@ public class SystemAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String preaddrole(){
+        authorityList = systemService.queryAllAuthority();
+        return SUCCESS;
+    }
+
+    public String preadduser(){
+        rolesList = systemService.queryAllRoles();
+        return SUCCESS;
+    }
+
     /**
      * 添加用户
      * @return
      */
     public String adduser(){
-        return SUCCESS;
+        if (systemService.addUsers(users)){
+            return ERROR;
+        }else {
+            return SUCCESS;
+        }
     }
 
     /**
@@ -65,23 +81,63 @@ public class SystemAction extends ActionSupport {
      * @return
      */
     public String addrole(){
-        return SUCCESS;
+       if ( systemService.addRoles(roles)){
+           return SUCCESS;
+       }else {
+           return ERROR;
+       }
+
     }
 
-
     /**
-     * 更新
+     * 添加权限
      * @return
      */
-    public String updateuser(){
+    public String addpur(){
+        if (systemService.addAuthority(authority)){
+            return SUCCESS;
+        }else {
+            message = "添加失败";
+            return ERROR;
+        }
+
+    }
+
+    /**
+     * 更新权限名
+     * @return
+     */
+    public String updatepur(){
+        if (systemService.updateAuthority(authority)){
+            return SUCCESS;
+        }else {
+            return ERROR;
+        }
+
+    }
+
+    public String updaterole(){
+        if (systemService.updateRoles(roles)){
+            return SUCCESS;
+        }else {
+            return ERROR;
+        }
+    }
+
+    /**
+     * 进入更新页面
+     * @return
+     */
+    public String edituser(){
         users = systemService.getUsers(id);
         return SUCCESS;
     }
-    public String updaterole(){
+    public String editrole(){
+        authorityList = systemService.queryAllAuthority();
         roles = systemService.getRoles(id);
         return SUCCESS;
     }
-    public String updatepur(){
+    public String editpur(){
         authority = systemService.getAuthority(id);
         return SUCCESS;
     }
@@ -90,7 +146,7 @@ public class SystemAction extends ActionSupport {
      * 批量删除用户
      * @return
      */
-    public String deleteusers(){
+    public String deleteuser(){
         HttpServletRequest request = ServletActionContext.getRequest();
         String[] idStrings = request.getParameterValues("ids");
         int[] idInts = new int[idStrings.length];
@@ -108,6 +164,9 @@ public class SystemAction extends ActionSupport {
     public String deletepur(){
         HttpServletRequest request = ServletActionContext.getRequest();
         String[] idStrings = request.getParameterValues("ids");
+        if (idStrings==null || idStrings.length==0){
+                return SUCCESS;
+        }
         int[] idInts = new int[idStrings.length];
         for (int i=0;i<idStrings.length;i++){
             idInts[i] = Integer.parseInt(idStrings[i]);
@@ -198,5 +257,13 @@ public class SystemAction extends ActionSupport {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

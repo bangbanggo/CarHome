@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,7 +12,7 @@
 <table border="0" width="100%" cellspacing="0">
   <tr>
     <td background="../images/topBarBg.gif" height="23"><strong>
-    <div class="searchfontlist"> &nbsp; 系统管理∶编辑权限</div>
+    <div class="searchfontlist"> &nbsp; 系统管理∶编辑角色</div>
     </strong></td>
   </tr>
 </table>
@@ -23,27 +24,39 @@
     <td background="../images/tab/bg.gif">&nbsp;</td>
   </tr>
 </table>
-<form action="updatepur" method="post" onSubmit="return subRole();">
+<form action="addrole" method="post">
   <table class="maintable" width="100%" border="0" cellspacing="0">
     <tr>
-      <td width="104"><div align="right">权限编号：</div></td>
-      <td height="24" colspan="2">${authority.authorityid}</td>
-      <input type="hidden" name="authority.authorityid" value="${authority.authorityid}" />
+      <td width="104"><div align="right">角色名称：</div></td>
+      <td width="239" height="24"><input name="roles.rolename" type="text" class="inputcontent" id="roleName" size="20">
+      </td>
+    <td width="435"></td>
+    </tr>
+    <tr>
+      <td width="104"><div align="right">角色描述：</div></td>
+      <td height="24"><textarea name="roles.roledescription" id="roleDepict"></textarea></td>
+    <td height="24"></td>
     </tr>
     <tr>
       <td width="104"><div align="right">权限：</div></td>
-      <td height="24"><textarea name="authority.authorityname" id="roleDepict" >${authority.authorityname}</textarea></td>
-    <td height="24"></td>
+      <td height="24" colspan="2"><table width="286" border="0">
+        <tr>
+          <td width="200" rowspan="4">
+            <c:forEach items="${authorityList}" var="authority">
+              <input type="checkbox" name="roles.authorities.authorityid" value="${authority.authorityid}"/>${authority.authorityname}<br/>
+            </c:forEach>
+          </td>
+        </tr>
+      </table></td>
     </tr>
-    
   </table>
   <table align="right" width="100%">
     <tr>
       <td height="30" width="70"></td>
-      <td width="65"><input type="submit" name="Submit" value="确定"></td>
+      <td width="65"><input type="submit" name="Submit" value="确定" ></td>
       <td width="96"><div align="center">
           <label>
-          <a href="listpur"><input type="button" name="Submit" value="返回" ></a>
+          <input type="button" name="Submit" value="返回" onclick="window.location.href ='listrole' ">
 </label>
         </div></td>
       <td width="60">&nbsp;</td>

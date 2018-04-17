@@ -36,14 +36,14 @@
 			form1.elements[id].value = newDate;
 		}
 
-		
+		function deletepur() {
+			document.getElementById("purform").submit();
+        }
 
 
 </script>
 	<body>
-		<form name="pur"
-			action="/system/deletepur"
-			method="post" >
+
 			<table
 				class="maintable"
 				border="0"
@@ -56,10 +56,10 @@
 					<td
 						width="20"
 						height="23"
-						background="images/topBarBg.gif">
+						background="../images/topBarBg.gif">
 						<div align="right">
 							<a href="#"><img
-									src="images/iHelp.gif"
+									src="../images/iHelp.gif"
 									width="16"
 									height="16"
 									border="0">
@@ -69,7 +69,11 @@
 				</tr>
 			</table>
 
-
+			<form name="pur"
+				  action="/system/deletepur"
+				  method="post"
+				  id="purform"
+			>
 
 			<table
 				class="tablelistcontent"
@@ -125,7 +129,7 @@
 							<div align="left">
 							</div>
 							<div align="center">
-								<a href="updatepur.jsp"><img
+								<a href="editpur?id=${auth.authorityid}"><img
 										src="../images/edit.gif"
 										width="16"
 										height="19"
@@ -138,7 +142,7 @@
 				</c:forEach>
 				<s:debug/>
 			</table>
-
+			</form>
 			<table width="100%">
 				<tr>
 					<td
@@ -150,7 +154,8 @@
 						<div align="left">
 							<input
 								type="submit"
-								name="submit"
+								name="button"
+								onclick="deletepur()"
 								value="删除">
 						</div>
 					</td>
@@ -161,11 +166,13 @@
 							</p>
 						</div>
 					</td>
+
+				<form action="system/addpur" method="post">
 					<td width="168">
 						<div align="left">
 							<input
 								type="text"
-								name="cc" id="cc"
+								name="authority.authorityname" id="cc"
 								>
 						</div>
 					</td>
@@ -178,8 +185,9 @@
 								>
 						</div>
 					</td>
+				</form>
 				</tr>
 			</table>
-		</form>
+
 	</body>
 </html>

@@ -1,21 +1,19 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title></title>
-
-
 	<body>
-		
 		<table
 			border="0"
 			width="100%"
 			cellspacing="0">
 			<tr>
 				<td
-					background="images/topBarBg.gif"
+					background="../images/topBarBg.gif"
 					height="23">
 					<strong>
 						<div class="searchfontlist">销售信息</div> 
@@ -33,27 +31,27 @@
 				<td
 					width="25"
 					height="24"
-					background="images/tab/firstLeftSel.gif">&nbsp;
+					background="../images/tab/firstLeftSel.gif">&nbsp;
 					
 				</td>
 				<td
 					width="100"
-					background="images/tab/middleSel.gif">
+					background="../images/tab/middleSel.gif">
 					<div align="center">
 						<span class="tabTitleSel">汽车移库</span></div>
 				</td>
 				<td
 					width="50"
-					background="images/tab/lastRightSel.gif">&nbsp;
+					background="../images/tab/lastRightSel.gif">&nbsp;
 					
 				</td>
-				<td background="images/tab/bg.gif">&nbsp;
+				<td background="../images/tab/bg.gif">&nbsp;
 					
 				</td>
 			</tr>
 		</table>
 		<form
-			action="updateuser.do"
+			action="change"
 			method="post"
 			onSubmit="return subUser()">
 			<table
@@ -61,20 +59,14 @@
 				width="100%"
 				border="0"
 				cellspacing="0">
+				<c:forEach items="${cars}" var="car">
 				<tr>
-					<td width="104">
+					<td width="104" bgcolor="#6495ed">
 						<div align="right">
-							汽车编号：						</div>					</td>
+							汽车编号：<input type="hidden" name="store.carid" value="${car.carid}"></div>					</td>
 					<td
 						width="201"
-						height="24"><input
-							name="username"
-							type="text"
-							class="inputcontent"
-							id="username"
-							value="001"
-							size="20"
-							readonly="true">
+						height="24">${car.carid}
 				    <span class="star">*</span>					</td>
 					<td width="473">
 															</td>
@@ -83,15 +75,7 @@
 					<td width="104">
 						<div align="right">
 							汽车名称：						</div>					</td>
-					<td height="24">
-						<input
-							name="test"
-							type="text"
-							class="inputcontent"
-							id="test"
-							value="法拉利"
-							size="20"
-							maxlength="16" />
+					<td height="24">${car.carname}
 						<span class="star">*</span>					</td>
 					<td height="24">
 													</td>
@@ -100,14 +84,8 @@
 					<td width="104">
 						<div align="right">
 							汽车型号：						</div>					</td>
-					<td height="24"><input
-							name="text"
-							type="text"
-							class="inputcontent"
-							id="text"
-							value="F001"
-							size="20"
-							maxlength="16" />
+					<td height="24">
+						${car.carmodel}
 				    <span class="star">*</span>					</td>
 					<td height="24">
 													</td>
@@ -116,29 +94,34 @@
 					<td width="104">
 						<div align="right">汽车颜色：						</div>					</td>
 					<td height="24">
-						<input
-							name="name"
-							type="text"
-							class="inputcontent"
-							id="name"
-							value="红色"
-							size="20">
+						${car.carcolor}
 						<span class="star">*</span>					</td>
 					<td height="24">
 																</td>
 				</tr>
 				<tr>
 					<td width="104">
+						<div align="right">原仓库：						</div>					</td>
+					<td height="24">
+						<input type="hidden" name="store.prewarehouseid" value="${car.warehouseid}" />${car.warehousename}
+						<span class="star">*</span>					</td>
+					<td height="24">
+																</td>
+				</tr>
+				</c:forEach>
+				<tr>
+					<td width="104">
 						<div align="right">
-							所属仓库：						</div>					</td>
+							更换至仓库：						</div>					</td>
 					<td
 						height="24"
 						colspan="2">
-						<span class="star"> <select
-								name="project"
-								id="project">
-						  <option selected>A仓库</option>
-						  <option>B仓库</option>
+						<span class="star"> <select name="store.warehouseid">
+						<option value="-1">请选择</option>
+						<c:forEach items="${warehouseList}" var="warehouse">
+							<option value="${warehouse.warehouseid}">${warehouse.warehousename}</option>
+						</c:forEach>
+					</select> 　　
 								
 							</select> *</span>					</td>
 				</tr>
@@ -146,6 +129,12 @@
 			<table
 				align="right"
 				width="100%">
+				<tr>
+					<td
+							height="30"
+							width="70"></td>
+					<td  colspan="4">移动数量：<input type="text" name="store.amount"/>辆</td>
+				</tr>
 				<tr>
 					<td
 						height="30"
@@ -176,7 +165,7 @@
 					<td
 						height="30"
 						colspan="5"
-						background="images/tab/bg.gif"></td>
+						background="../images/tab/bg.gif"></td>
 				</tr>
 			</table>
 			

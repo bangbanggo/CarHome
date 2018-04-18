@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="/WEB-INF/c.tld" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -83,25 +82,25 @@ function subUser()
 </script>
 
 	<body onLoad="selected()">
-		<input
-			type="hidden"
-			id="roleId"
-			value="${viewuser.roleId }">
-		<input
-			type="hidden"
-			id="depId"
-			value="${viewuser.depId }">
-		<input
-			type="hidden"
-			id="projectId"
-			value="${viewuser.projectId }">
+		<%--<input--%>
+			<%--type="hidden"--%>
+			<%--id="roleId"--%>
+			<%--value="${viewuser.roleId }">--%>
+		<%--<input--%>
+			<%--type="hidden"--%>
+			<%--id="depId"--%>
+			<%--value="${viewuser.depId }">--%>
+		<%--<input--%>
+			<%--type="hidden"--%>
+			<%--id="projectId"--%>
+			<%--value="${viewuser.projectId }">--%>
 		<table
 			border="0"
 			width="100%"
 			cellspacing="0">
 			<tr>
 				<td
-					background="images/topBarBg.gif"
+					background="../images/topBarBg.gif"
 					height="23">
 					<strong>
 						<div class="searchfontlist">
@@ -120,30 +119,29 @@ function subUser()
 				<td
 					width="25"
 					height="24"
-					background="images/tab/firstLeftSel.gif">&nbsp;
+					background="../images/tab/firstLeftSel.gif">&nbsp;
 					
 				</td>
 				<td
 					width="100"
-					background="images/tab/middleSel.gif">
+					background="../images/tab/middleSel.gif">
 					<div align="center">
 						<span class="tabTitleSel">编辑仓库</span>
 					</div>
 				</td>
 				<td
 					width="50"
-					background="images/tab/lastRightSel.gif">&nbsp;
+					background="../images/tab/lastRightSel.gif">&nbsp;
 					
 				</td>
-				<td background="images/tab/bg.gif">&nbsp;
+				<td background="../images/tab/bg.gif">&nbsp;
 					
 				</td>
 			</tr>
 		</table>
 		<form
-			action="warehouselist.jsp"
-			method="post"
-			onSubmit="return subUser()">
+			action="updateWarehouse"
+			method="post">
 			<table
 				class="maintable"
 				width="100%"
@@ -154,18 +152,11 @@ function subUser()
 						<div align="right">
 							仓库ID：						</div>					</td>
 				  <td width="201" height="24">
-						<input
-							name="text"
-							type="text"
-							class="inputcontent"
-							id="text" value="1"
-							size="20"
-							maxlength="16" /></td>
+						${warehouse.warehouseid}<input type="hidden" name="warehouse.warehouseid" value="${warehouse.warehouseid}"/></td>
 					<td width="473" height="24">
 						<div
-							id="test_password"
 							style="display:none">
-							<font color="#FF0000">密码不能小于6位</font>						</div>					</td>
+												</div>					</td>
 				</tr>
 			
 				<tr>
@@ -174,18 +165,17 @@ function subUser()
 							仓库名称：						</div>					</td>
 				  <td height="24"><label></label><label>
 				    <input
-							name="text2"
+							name="warehouse.warehousename"
 							type="text"
 							class="inputcontent"
-							id="text2" value="A仓库"
+							id="text2" value="${warehouse.warehousename}"
 							size="20"
 							maxlength="16" />
 				  </label></td>
 					<td height="24">
 						<div
-							id="test_password"
 							style="display:none">
-							<font color="#FF0000">密码不能小于6位</font>						</div>					</td>
+											</div>					</td>
 				</tr>
 				
 				
@@ -195,17 +185,16 @@ function subUser()
 							仓库位置：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="warehouse.warehouselocation"
 							type="text"
 							class="inputcontent"
-							id="text" value="上海浦东"
+							value="${warehouse.warehouselocation}"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
 						<div
-							id="test_password"
 							style="display:none">
-							<font color="#FF0000">密码不能小于6位</font>						</div>					</td>
+												</div>					</td>
 				</tr>
 				
 				<tr>
@@ -214,17 +203,17 @@ function subUser()
 							仓库储存量：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="warehouse.warehousemaxstore"
 							type="text"
 							class="inputcontent"
-							id="text" value="1000"
+							id="text" value="${warehouse.warehousemaxstore}"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
 						<div
 							id="test_password"
 							style="display:none">
-							<font color="#FF0000">密码不能小于6位</font>						</div>					</td>
+													</div>					</td>
 				</tr>
 			</table>
 			<table
@@ -260,13 +249,13 @@ function subUser()
 					<td
 						height="30"
 						colspan="5"
-						background="images/tab/bg.gif"></td>
+						background="../images/tab/bg.gif"></td>
 				</tr>
 			</table>
-			<input
-				type="hidden"
-				name="uid"
-				value="${viewuser.uid }">
+			<%--<input--%>
+				<%--type="hidden"--%>
+				<%--name="uid"--%>
+				<%--value="${viewuser.uid }">--%>
 		</form>
 	</body>
 </html>

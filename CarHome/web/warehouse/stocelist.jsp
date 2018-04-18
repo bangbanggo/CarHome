@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,42 +40,45 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<td background="../images/tab/bg.gif">&nbsp;</td>
 	</tr>
 </table>
-<form name="form1" method="post" action="">
+<form name="form1" method="post" action="listCars">
   <label></label>
 　　　　　仓库名：
-<select name="select">
-  <option>上海仓库</option>
-  <option>北京仓库</option>
-  <option>武汉仓库</option>
+<select name="warehouse.warehouseid">
+	<option value="-1">请选择</option>
+  <c:forEach items="${warehouseList}" var="warehouse">
+	  <option value="${warehouse.warehouseid}">${warehouse.warehousename}</option>
+  </c:forEach>
 </select> 　　
 汽车类型：
 <label>
-<select name="select2">
-  <option>法拉利</option>
-  <option>宝马</option>
-  <option>奔驰</option>
+<select name="car.carname">
+	<option value="-1">请选择</option>
+  <c:forEach items="${names}" var="name" >
+      <option value="${name}">${name}</option>
+  </c:forEach>
 </select>
 </label> 　 
 汽车型号：
 <label>
-<input type="text" name="textfield">
+<input type="text" name="car.carmodel">
 </label>　　
 <label>
 <input type="submit" name="Submit" value="查询">
 </label>
 <p>&nbsp;</p>
 </form>
-<form name="editdemo" action="addResume.do" method="post">
+<form name="list" action="addResume.do" method="post">
 <table class="maintable" width="100%" border="0" cellspacing="0">
+	<c:forEach items="${warehouseList}" var="warehouse">
 	<tr>
 		<td width="12%" height="27">
 	  <div align="center">仓　　库：</div>		</td>
-		<td width="13%"><div align="center">上海仓库</div></td>
+		<td width="13%"><div align="center">${warehouse.warehousename}</div></td>
 		<td width="14%">&nbsp;</td>
 		<td width="14%">&nbsp;</td>
 		<td width="20%">
 		  <div align="center">仓库存储量：</div></td>
-		<td width="27%"><div align="center">100辆</div></td>
+		<td width="27%"><div align="center">${warehouse.warehousemaxstore}辆</div></td>
 	</tr>
 	<tr>
 		<td colspan="6">
@@ -83,109 +87,28 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	<tr>
 		<td height="23">
 	  <div align="center">仓库地址：</div>		</td>
-		<td colspan="5"><div align="center">中华人民共和国湖北省武汉市东湖开发区</div></td>
+		<td colspan="5"><div align="center">${warehouse.warehouselocation}</div></td>
 	</tr>
 	<tr>
 		<td colspan="6">
 		<hr color="#99CCFF">		</td>
 	</tr>
+		<c:forEach items="${warehouse.cars}" var="car">
 	<tr>
       <td><div align="center">汽车名称：</div></td>
-	  <td><div align="center">奔驰</div></td>
+	  <td><div align="center">${car.carname}</div></td>
 	  <td><div align="center">型号：</div></td>
-	  <td><div align="center">S600</div></td>
+	  <td><div align="center">${car.carmodel}</div></td>
 	  <td><div align="center">数　　量：</div></td>
-	  <td><div align="center">10辆</div></td>
-    </tr>
-	<tr>
-		<td colspan="6">
-		<hr color="#99CCFF">		</td>
-	</tr>
-	<tr>
-      <td><div align="center">汽车名称：</div></td>
-	  <td><div align="center">宝马</div></td>
-	  <td><div align="center">型号：</div></td>
-	  <td><div align="center">BMW</div></td>
-	  <td><div align="center">数　　量：</div></td>
-	  <td><div align="center">20辆</div></td>
-    </tr>
-	<tr>
-		<td colspan="6">
-		<hr color="#99CCFF">		</td>
-	</tr>
-	<tr>
-      <td><div align="center">汽车名称：</div></td>
-	  <td><div align="center">法拉利</div></td>
-	  <td><div align="center">型号：</div></td>
-	  <td><div align="center">F001</div></td>
-	  <td><div align="center">数　　量：</div></td>
-	  <td><div align="center">5辆</div></td>
-    </tr>
-	<tr>
-		<td colspan="6">
-		<hr color="#99CCFF">		</td>
-	</tr>
-
-	<tr align="center" bgcolor="#FFFFFF">
-		<td height="19" colspan="6" class="titleLine" bgcolor="#99CCFF">
-		<div align="left">
-		  <p>&nbsp;</p>
-		  <p>&nbsp;</p>
-		</div>		</td>
-	</tr>
-	<tr>
-      <td height="27"><div align="center">仓　　库：</div></td>
-	  <td><div align="center">北京仓库</div></td>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	  <td><div align="center">仓库存储量：</div></td>
-	  <td><div align="center">200辆</div></td>
-    </tr>
-	<tr>
-      <td colspan="6"><hr color="#99CCFF">      </td>
-    </tr>
-	<tr>
-      <td height="23"><div align="center">仓库地址：</div></td>
-	  <td colspan="5"><div align="center">中华人民共和国上海浦东开发区</div>
-      <div align="center"></div>	    <div align="center"></div></td>
-    </tr>
-	<tr>
-      <td colspan="6"><hr color="#99CCFF">      </td>
-    </tr>
-	<tr>
-      <td><div align="center">汽车名称：</div></td>
-	  <td><div align="center">奔驰</div></td>
-	  <td><div align="center">型号：</div></td>
-	  <td><div align="center">S600</div></td>
-	  <td><div align="center">数　　量：</div></td>
-	  <td><div align="center">10辆</div></td>
-    </tr>
-	<tr>
-      <td colspan="6"><hr color="#99CCFF">      </td>
-    </tr>
-	<tr>
-      <td><div align="center">汽车名称：</div></td>
-	  <td><div align="center">宝马</div></td>
-	  <td><div align="center">型号：</div></td>
-	  <td><div align="center">BMW</div></td>
-	  <td><div align="center">数　　量：</div></td>
-	  <td><div align="center">20辆</div></td>
-    </tr>
-	<tr>
-      <td colspan="6"><hr color="#99CCFF">      </td>
-    </tr>
-	<tr>
-      <td><div align="center">汽车名称：</div></td>
-	  <td><div align="center">法拉利</div></td>
-	  <td><div align="center">型号：</div></td>
-	  <td><div align="center">F001</div></td>
-	  <td><div align="center">数　　量：</div></td>
-	  <td><div align="center">5辆</div></td>
+	  <td><div align="center">${car.amount}辆</div></td>
     </tr>
 
 	<tr>
-		<td colspan="6" align="center">&nbsp;</td>
+		<td colspan="6">
+		<hr color="#99CCFF">		</td>
 	</tr>
+		</c:forEach>
+	</c:forEach>
 </table>
 <table align="center" width="100%">
 	<tr>

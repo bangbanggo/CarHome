@@ -139,6 +139,9 @@
       <if test="carid != null">
         carId,
       </if>
+      <if test="amount != null">
+        amount,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="warehouseid != null">
@@ -146,6 +149,9 @@
       </if>
       <if test="carid != null">
         #{carid,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -192,4 +198,16 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <update id="updateWarehouseold" parameterType="edu.black.model.Store">
+    update store set amount=amount-#{amount}  where carid = #{carid} and warehouseid=#{prewarehouseid} and amount>=#{amount}
+  </update>
+  <select id="check" resultType="Integer"  parameterType="edu.black.model.Store">
+    select count(*) from store where carid = #{carid} and warehouseid=#{warehouseid}
+  </select>
+  <update id="updatewarehouse" parameterType="edu.black.model.Store">
+    update store set amount=amount+#{amount} where carid = #{carid} and warehouseid=#{warehouseid}
+  </update>
+  <insert id="insertstoreitem" parameterType="edu.black.model.Store">
+    insert into store (warehouseid,carid,amount) values (#{warehouseid},#{carid},#{amount})
+  </insert>
 </mapper>

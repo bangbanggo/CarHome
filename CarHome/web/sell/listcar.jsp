@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <html>
@@ -53,26 +54,29 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<td background="../images/tab/bg.gif">&nbsp;</td>
 	</tr>
 </table>
-<form action="listResume.do?page=1" method="post">
+<form action="carDetail" method="post">
 <table class="maintable" border="0" width="100%" cellspacing="0">
   <tr>
-    <td height="27" class="searchfontlist"><div align="right">汽车属性：:</div></td>
-    <td><label>
-      <select name="select">
-        <option>汽车名称</option>
-        <option>汽车型号</option>
-        <option>汽车颜色</option>
-      </select>
-    </label></td>
-    <td><div align="center">汽车属性：
-      <label>
-            <select name="select2">
-              <option>上海仓库</option>
-              <option>北京仓库</option>
-              <option>武汉仓库</option>
-            </select>
-            </label>
-    </div></td>
+    <td height="27" class="searchfontlist"  ><div align="right">汽车属性：:</div></td>
+    <td colspan="2"  align="center">
+		<table width="100%">
+			<tr>
+				<td>汽车名称<input type="text" name="car.carname"></td>
+				<td> 汽车型号<input type="text" name="car.carmodel"></td>
+			</tr>
+			<tr>
+				<td>汽车颜色<input type="text" name="car.carcolor"></td>
+				<td>
+					仓库名：
+					<select name="car.warehouseid">
+						<option value="-1">请选择</option>
+						<c:forEach items="${warehouseList}" var="warehouse">
+							<option value="${warehouse.warehouseid}">${warehouse.warehousename}</option>
+						</c:forEach>
+					</select> 　　</td>
+			</tr>
+		</table>
+	</td>
     <td>　
       <div align="center"></div>
       <div align="center"></div>
@@ -93,14 +97,14 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
       　　</div></td>
 		<td width="21%">　
 		  <label>
-		  <input type="button" name="Submit" value="查询">
+		  <input type="submit" name="Submit" value="查询">
 		  </label>
 		  <div align="center"></div>
 		  <div align="center"></div>      </td>
 	</tr>
 </table>
 </form>
-<form action="deleteResume.do" method="post">
+<form action="preChange" method="post">
 <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
 	<tr>
 		<th width="45"><label>
@@ -118,110 +122,32 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<th width="61">汽车描述</th>
 		<th width="68">所属仓库</th>
 	</tr>
-	
+	<c:forEach items="${carsList}" var="car">
 	<tr class=Off onMouseOut="this.className='Off'"
 		onMouseOver="this.className='Up'">
 	  <td height="24"><div align="center">
-	    <input type="checkbox" name="checkbox22" value="checkbox">
+	    <input type="radio" name="choice" value="${car.carid}/${car.warehouseid}"/>
 	    </div></td>
-	  <td><div align="center">001</div></td>
-	  <td><div align="center">法拉利</div></td>
-	  <td><div align="center">F001</div></td>
-	  <td><div align="center">红色</div></td>
-	  <td><div align="center">231</div></td>
-	  <td><div align="center">意大利</div></td>
-	  <td><div align="center">2004-01-01</div></td>
-	  <td><div align="center">2005-01-01</div></td>
-	  <td><div align="center">上海</div></td>
-	  <td><div align="center">帅</div></td>
-	  <td><div align="center">上海仓库</div></td>
+	  <td><div align="center">${car.carid}</div></td>
+	  <td><div align="center">${car.carname}</div></td>
+	  <td><div align="center">${car.carmodel}</div></td>
+	  <td><div align="center">${car.carcolor}</div></td>
+	  <td><div align="center">${car.carmobile}</div></td>
+	  <td><div align="center">${car.carfrom}</div></td>
+	  <td><div align="center">${car.carcreatedate}</div></td>
+	  <td><div align="center">${car.carindate}</div></td>
+	  <td><div align="center">${car.carto}</div></td>
+	  <td><div align="center">${car.cardescription}</div></td>
+	  <td><div align="center">${car.warehousename}</div></td>
 	  </tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-      <td height="24"><div align="center">
-          <input type="checkbox" name="checkbox23" value="checkbox">
-      </div></td>
-	  <td><div align="center">002</div></td>
-	  <td><div align="center">宝马</div></td>
-	  <td><div align="center">BMW1</div></td>
-	  <td><div align="center">蓝色</div></td>
-	  <td><div align="center">123</div></td>
-	  <td><div align="center">德国</div></td>
-	  <td><div align="center">2006-01-12</div></td>
-	  <td><div align="center">2007-01-12</div></td>
-	  <td><div align="center">北京</div></td>
-	  <td><div align="center">酷</div></td>
-	  <td><div align="center">北京仓库</div></td>
-	  </tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-      <td height="24"><div align="center">
-          <input type="checkbox" name="checkbox"
-			value="${RL.owenResumeId}">
-      </div></td>
-	  <td><div align="center">003</div></td>
-	  <td><div align="center">奔驰</div></td>
-	  <td><div align="center">s660</div></td>
-	  <td><div align="center">黑色</div></td>
-	  <td><div align="center">523</div></td>
-	  <td><div align="center">武汉</div></td>
-	  <td><div align="center">2005-08-08</div></td>
-	  <td><div align="center">2006-08-08</div></td>
-	  <td><div align="center">重庆</div></td>
-	  <td><div align="center">猛</div></td>
-	  <td><div align="center">武汉仓库</div></td>
-	  </tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-	  <td height="24"><div align="center">
-	    <input type="checkbox" name="checkbox23" value="checkbox">
-	    </div></td>
-	  <td><div align="center">004</div></td>
-	  <td><div align="center">宝马</div></td>
-	  <td><div align="center">BMW2</div></td>
-	  <td><div align="center">紫色</div></td>
-	  <td><div align="center">123</div></td>
-	  <td><div align="center">美国</div></td>
-	  <td><div align="center">2006-03-12</div></td>
-	  <td><div align="center">2007-03-12</div></td>
-	  <td><div align="center">香港</div></td>
-	  <td><div align="center">吊</div></td>
-	  <td><div align="center">北京仓库</div></td>
-	  </tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-		<td height="24">
-		  <div align="center">
-		    <input type="checkbox" name="checkbox"
-			value="${RL.owenResumeId}">
-		  </div></td>
-		<td><div align="center">005</div></td>
-		<td>
-		  <div align="center">奔驰</div></td>
-		<td>
-	      <div align="center">s600</div></td>
-		<td>
-		  <div align="center">银色</div></td>
-		<td>
-	      <div align="center">521</div></td>
-		<td>
-		  <div align="center">英国</div></td>
-		<td><div align="center">2007-08-08</div></td>
-		<td>
-		  <div align="center">2008-08-08</div></td>
-		<td>
-		  <div align="center">武汉</div></td>
-		<td><div align="center">拽</div></td>
-		<td>
-		  <div align="center">伤害仓库</div></td>
-	</tr>
+	</c:forEach>
 </table>
 <table width="100%">
 	<tr>
 		<td height="40" align="center" valign="middle">
 		<div align="left">
 		  <label></label>
-		  <input type="button" name="Submit3" value="汽车移库"  onClick="window.location.href='../sell/updatecar.jsp'">
+		  <input type="submit" name="Submit3" value="汽车移库">
           </div>
 		<div align="center"></div>
 		<div align="center"></div>		</td>

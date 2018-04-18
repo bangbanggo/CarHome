@@ -61,4 +61,10 @@ public interface StoreMapper {
      * @mbg.generated Mon Apr 16 21:19:55 CST 2018
      */
     int updateByExample(@Param("record") Store record, @Param("example") StoreExample example);
+
+    int updateWarehouseold(Store store);
+    int check(Store store);
+    int updatewarehouse(Store store);
+    int insertstoreitem(Store store);
+
 }

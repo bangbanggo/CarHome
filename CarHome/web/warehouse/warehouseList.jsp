@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -41,7 +42,7 @@ function checkAll()
 </table>
 
 
-  <form action="warehouselist.jsp" method="post">
+  <form action="deleteWarehouse" method="post">
     <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
       <tr>
         <th width="24"><input type="checkbox" name="checkbox" id="all" value="checkbox" onClick="checkAll()"></th>
@@ -52,39 +53,19 @@ function checkAll()
         <th width="145">现有存储量</th>
         <th width="91">编辑</th>
       </tr>
+      <c:forEach items="${warehouseList}" var="warehouse">
       <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
         <td height="24"><div align="center">
-            <input type="checkbox" name="dels">
+            <input type="checkbox" name="warehouseList.warehouseid" value="${warehouse.warehouseid}">
         </div></td>
-        <td><div align="center">1<a href="viewuser.jsp"></a></div></td>
-        <td><div align="center">北京仓库</div></td>
-        <td><div align="center">北京天安门广场</div></td>
-        <td><div align="center">1000</div></td>
-        <td><div align="center">500</div></td>
-        <td><div align="center"><a href=""></a><a href="updatawarehouse.jsp"><img src="../images/edit.gif" width="16" height="19" border="0"></a> </div></td>
+        <td><div align="center">${warehouse.warehouseid}<a href="viewuser.jsp"></a></div></td>
+        <td><div align="center">${warehouse.warehousename}</div></td>
+        <td><div align="center">${warehouse.warehouselocation}</div></td>
+        <td><div align="center">${warehouse.warehousemaxstore}</div></td>
+        <td><div align="center">${warehouse.warehouseremainstore}</div></td>
+        <td><div align="center"><a href="editWarehouse?warehouse.warehouseid=${warehouse.warehouseid}"><img src="../images/edit.gif" width="16" height="19" border="0"></a> </div></td>
       </tr>
-      <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-        <td height="24"><div align="center">
-            <input type="checkbox" name="dels">
-        </div></td>
-        <td><div align="center">2<a href="viewuser.jsp"></a></div></td>
-        <td><div align="center">上海浦东开发区</div></td>
-        <td><div align="center">上海浦东开发区</div></td>
-        <td><div align="center">800</div></td>
-        <td><div align="center">400</div></td>
-        <td><div align="center"><a href=""></a><a href="updatawarehouse.jsp"><img src="../images/edit.gif" width="16" height="19" border="0"></a> </div></td>
-      </tr>
-      <tr class=Off onMouseOut="this.className='Off'" onMouseOver="this.className='Up'">
-        <td height="24"><div align="center">
-            <input type="checkbox" name="dels">
-        </div></td>
-        <td><div align="center">3<a href="viewuser.jsp"></a></div></td>
-        <td><div align="center">武汉</div></td>
-        <td><div align="center">武汉东湖开发区</div></td>
-        <td><div align="center">500</div></td>
-        <td><div align="center">300</div></td>
-        <td><div align="center"><a href=""></a><a href="updatawarehouse.jsp"><img src="../images/edit.gif" width="16" height="19" border="0"></a> </div></td>
-      </tr>
+      </c:forEach>
     </table>
     <table width="100%">
     <tr>
@@ -93,7 +74,7 @@ function checkAll()
         <input type="submit" name="Submit" value="删除">
           </div></td>
       <td width="50"><div align="center">
-        <input type="button" name="Submit" value="添加" onClick="window.location.href='addwarehouse.jsp'">
+        <input type="button" name="Submit" value="添加" onClick="window.location.href='preAddWarehouse'">
       </div></td>
       <td width="86"><div align="center">
       </div></td>

@@ -115,14 +115,14 @@
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../warehouse/warehouseList.jsp" target="workspace">仓库信息</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="/warehouse/listWarehouse" target="workspace">仓库信息</a></td>
         </tr>
 
         <tr>
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../warehouse/addcar.jsp" target="workspace">新车入库</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="/warehouse/preAddCar" target="workspace">新车入库</a></td>
         </tr>
 
 
@@ -131,7 +131,7 @@
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../warehouse/stocelist.jsp" target="workspace">库存管理</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="/warehouse/listCars" target="workspace">库存管理</a></td>
         </tr>
 
 
@@ -187,13 +187,13 @@
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../sell/listcar.jsp" target="workspace">汽车详情</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="/sell/carDetail" target="workspace">汽车详情</a></td>
         </tr>
         <tr>
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../sell/order.jsp" target="workspace">订单信息</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="/sell/order_preadd" target="workspace">订单信息</a></td>
         </tr>
         <tr>
             <td width="8">

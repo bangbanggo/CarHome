@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,52 +43,54 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<td background="../images/tab/bg.gif">&nbsp;</td>
 	</tr>
 </table>
-<form name="listform" action="../sell/listcar.jsp" method="post" onSubmit="return subUser() ">
+<form name="listform" action="/warehouse/addCar" method="post" >
   <table class="maintable" width="97%" border="0" cellspacing="0">
  
     <tr>
       <td width="14%"><div align="center">汽车编号</div></td>
-      <td width="23%"><input type="text" name="names" id="names" >
+      <td width="23%"><input type="text" name="car.carno" id="names" >
       *<div id="test_names" style="display:none ">请填写汽车编号</div>      </td>
       <td width="15%"><div align="center">汽车名称</div></td>
-      <td width="48%"><input type="text" name="otherLink" id="otherLink"></td>
+      <td width="48%"><input type="text" name="car.carname" id="otherLink"></td>
+
     </tr>
     <tr>
       <td><div align="center">汽车型号</div></td>
-      <td><input type="text" id="linkPhone" name="linkPhone"></td>
+      <td><input type="text" id="linkPhone" name="car.carmodel"></td>
       <td><div align="center">汽车颜色</div></td>
-      <td><input type="text" id="age" name="age"></td>
+      <td><input type="text" id="age" name="car.carcolor"></td>
     </tr>
     <tr>
       <td><div align="center">发动机号</div></td>
-      <td><input type="text" name="specialty" id="specialty"></td>
+      <td><input type="text" name="car.carmobile" id="specialty"></td>
       <td><div align="center">生产地</div></td>
-      <td><input type="text" name="school" id="school"></td>
+      <td><input type="text" name="car.carfrom" id="school"></td>
     </tr>
     <tr>
       <td><div align="center">车辆流向 </div></td>
-      <td><input type="text" name="school2" id="school2"></td>
+      <td><input type="text" name="car.carto" id="school2"></td>
       <td><div align="center">所属仓库</div></td>
       <td><label>
-        <select name="select">
-          <option selected>上海仓库</option>
-          <option>武汉仓库</option>
-<option>北京仓库</option>
+        <select name="store.warehouseid">
+          <c:forEach items="${warehouseList}" var="warehouse">
+              <option value="${warehouse.warehouseid}">${warehouse.warehousename}</option>
+          </c:forEach>
         </select>
       </label></td>
     </tr>
     <tr>
       <td><div align="center">生产日期</div></td>
-      <td><input type="text" name="mailingTime2" id="mailingTime2" onClick="show_cele_date(this,'','',this)"></td>
+      <%--<td><input type="text" name="mailingTime2" id="mailingTime2" onClick="show_cele_date(this,'','',this)"></td>--%>
+      <td><input type="date" name="car.carcreatedate" id="mailingTime2"></td>
       <td><div align="center">入库日期</div></td>
       <td>
-	  <input type="text" name="mailingTime" id="mailingTime" onClick="show_cele_date(this,'','',this)"></td>
+	  <input type="date" name="car.carindate" id="mailingTime"></td>
     </tr>
     <tr align="center" bgcolor="#99CCFF">
       <td height="26" colspan="4" class="titleLine"><div align="left"> 汽车描述：<span class="style2"></span></div></td>
     </tr>
     <tr>
-      <td height="121" colspan="4" align="center"><textarea name="texts" id="texts" cols="140" rows="5"></textarea></td>
+      <td height="121" colspan="4" align="center"><textarea name="car.cardescription" id="texts" cols="140" rows="5"></textarea></td>
     </tr>
   </table>
   <option></option>
@@ -95,7 +98,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <table align="left" width="100%">
 	<tr>
 		<td height="107">
-		<div align="center"><input type="submit" name="Submit"
+
+		<div align="center">
+            入库数量:<input type="text" name="store.amount" value="1"/>
+            <input type="submit" name="Submit"
 			value="提交"> 
 		  <input type="reset" name="Submit"
 			value="重置">

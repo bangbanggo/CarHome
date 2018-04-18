@@ -25,4 +25,50 @@
             <result name="error">/error.jsp</result>
         </action>
     </package>
+    <package name="warehouse" extends="struts-default" namespace="/warehouse" strict-method-invocation="false">
+        <action name="preAddWarehouse" method="preAddWarehouse" class="edu.black.action.warehouse.WarehouseAction">
+            <result name="success">warehouseAdd.jsp</result>
+        </action>
+        <action name="addWarehouse" method="addWarehouse" class="edu.black.action.warehouse.WarehouseAction">
+            <result name="success" type="redirectAction">listWarehouse</result>
+        </action>
+        <action name="listWarehouse" method="listWarehouse" class="edu.black.action.warehouse.WarehouseAction">
+            <result name="success">warehouseList.jsp</result>
+        </action>
+        <action name="editWarehouse" method="editWarehouse" class="edu.black.action.warehouse.WarehouseAction">
+            <result name="success">warehouseEdit.jsp</result>
+        </action>
+        <action name="updateWarehouse" method="updateWarehouse" class="edu.black.action.warehouse.WarehouseAction">
+            <result name="success" type="redirectAction">listWarehouse</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="deleteWarehouse" method="deleteWarehouse" class="edu.black.action.warehouse.WarehouseAction">
+            <result name="success" type="redirectAction">listWarehouse</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="preAddCar" class="edu.black.action.CarAction" method="preAddCar">
+            <result name="success">addcar.jsp</result>
+        </action>
+        <action name="addCar" class="edu.black.action.CarAction" method="addCar">
+            <result name="success">addcar.jsp</result>
+        </action>
+        <action name="listCars" class="edu.black.action.warehouse.WarehouseAction" method="listCars">
+            <result name="success">stocelist.jsp</result>
+        </action>
+    </package>
+    <package name="sellaction" extends="struts-default" namespace="/sell" strict-method-invocation="false">
+        <action name="carDetail" class="edu.black.action.CarAction" method="carDetail">
+            <result name="success">listcar.jsp</result>
+        </action>
+        <action name="preChange" class="edu.black.action.ChangeCarWarehouseAction" method="preChange">
+            <result name="success">updatecar.jsp</result>
+        </action>
+        <action name="change" class="edu.black.action.ChangeCarWarehouseAction">
+            <result name="success" type="redirectAction">carDetail</result>
+        </action>
+        <action name="order_*" class="edu.black.action.OrderAction" method="{1}">
+            <result name="success">order.jsp</result>
+            <result name="order">order.jsp</result>
+        </action>
+    </package>
 </struts>

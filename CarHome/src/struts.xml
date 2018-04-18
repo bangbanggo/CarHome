@@ -70,5 +70,15 @@
             <result name="success">order.jsp</result>
             <result name="order">order.jsp</result>
         </action>
+        <action name="query_json_*" class="edu.black.action.Query_Json_Action" method="{1}"/>
+    </package>
+    <package name="customer" extends="struts-default" namespace="/customer" strict-method-invocation="false">
+        <action name="customer_*" class="edu.black.action.ClientAction" method="{1}">
+            <result name="update">updatacustomer.jsp</result>
+            <result name="list" type="redirectAction">customer_list</result>
+            <result name="error">/error.jsp</result>
+            <result name="add">addcustomer.jsp</result>
+            <result name="success">listcustomer.jsp</result>
+        </action>
     </package>
 </struts>

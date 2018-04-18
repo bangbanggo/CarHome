@@ -252,7 +252,7 @@
             <td width="8"><img src="../images/ftv2vertline.gif"></td>
             <td width="8"><img src="../images/ftv2node.gif" width="16" height="22"></td>
             <td width="16"><img src="../images/iGenericAttribute.gif" width="16" height="16"></td>
-            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="../customer/listcustomer.jsp" target="workspace">客户信息</a></td>
+            <td width="158" onMouseover="button_over(this);" onMouseout="button_out(this);"><a href="/customer/customer_list" target="workspace">客户信息</a></td>
         </tr>
 
         <tr>

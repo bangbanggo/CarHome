@@ -9,13 +9,20 @@ import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class Query_Json_Action extends ActionSupport {
     private CarService carService = new CarServiceImpl();
     private String name;
     public String getmodel(){
-        List<String> names = carService.getAllCarModel(name);
+        String newname = null;
+        try {
+            newname = new String(name.getBytes("ISO8859-1"),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        List<String> names = carService.getAllCarModel(newname);
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setContentType("text/html;charset=utf-8");
         try {
@@ -23,7 +30,24 @@ public class Query_Json_Action extends ActionSupport {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return SUCCESS;
+        return null;
+    }
+ public String getcarno(){
+        String newname = null;
+        try {
+            newname = new String(name.getBytes("ISO8859-1"),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        List<Integer> names = carService.getAllCarNoByModel(newname);
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            response.getWriter().print(new Gson().toJson(names));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String getName() {

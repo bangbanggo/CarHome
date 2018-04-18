@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="/WEB-INF/c.tld" %>
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="../css/public.css">
@@ -15,7 +14,7 @@
 			cellspacing="0">
 			<tr>
 				<td
-					background="images/topBarBg.gif"
+					background="../images/topBarBg.gif"
 					height="23">
 					<strong>
 						<div class="searchfontlist">
@@ -35,30 +34,30 @@
 				<td
 					width="25"
 					height="24"
-					background="images/tab/firstLeftSel.gif">&nbsp;
+					background="../images/tab/firstLeftSel.gif">&nbsp;
 					
 				</td>
 				<td
 					width="100"
-					background="images/tab/middleSel.gif">
+					background="../images/tab/middleSel.gif">
 					<div align="center">
 						<span class="tabTitleSel">请填写内容</span>
 					</div>
 				</td>
 				<td
 					width="50"
-					background="images/tab/lastRightSel.gif">&nbsp;
+					background="../images/tab/lastRightSel.gif">&nbsp;
 					
 				</td>
-				<td background="images/tab/bg.gif">&nbsp;
+				<td background="../images/tab/bg.gif">&nbsp;
 					
 				</td>
 			</tr>
 		</table>
 		<form
-			action="listuser.jsp"
+			action="customer_update"
 			method="post"
-			onSubmit="return subUser()">
+			>
 			<table
 				class="maintable"
 				width="100%"
@@ -71,7 +70,8 @@
 						width="201"
 						height="24">
 						<input
-							name="username"
+							name="client.clientid"
+							value="${client.clientid}"
 							type="text"
 							class="inputcontent"
 							id="username"
@@ -86,10 +86,10 @@
 							姓名：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="client.clientname"
+							value="${client.clientname}"
 							type="text"
 							class="inputcontent"
-							id="text"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
@@ -101,11 +101,11 @@
 						<div align="right">
 							性别：						</div>					</td>
 				  <td height="24"><label>
-				    <input type="radio" name="radiobutton" value="radiobutton">
+				    <input type="radio" name="client.clientgender" value="男">
 				    男
 				  </label>
 				    <label>
-				    <input type="radio" name="radiobutton" value="radiobutton">
+				    <input type="radio" name="client.clientgender" value="女">
 			      女</label></td>
 					<td height="24">
 																</td>
@@ -118,10 +118,10 @@
 							联系电话：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="client.clienttel"
+							value="${client.clienttel}"
 							type="text"
 							class="inputcontent"
-							id="text"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
@@ -134,7 +134,8 @@
 							身份证：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="client.clientidcard"
+							value="${client.clientidcard}"
 							type="text"
 							class="inputcontent"
 							id="text"
@@ -149,10 +150,10 @@
 						<div align="right">
 				  住址：						</div>					</td>
 				  <td height="24"><input
-							name="name"
+							name="client.clientaddress"
+							value="${client.clientaddress}"
 							type="text"
 							class="inputcontent"
-							id="name"
 							size="20"></td>
 					<td height="24">
 																</td>
@@ -191,7 +192,7 @@
 					<td
 						height="30"
 						colspan="5"
-						background="images/tab/bg.gif"></td>
+						background="../images/tab/bg.gif"></td>
 				</tr>
 			</table>
 			

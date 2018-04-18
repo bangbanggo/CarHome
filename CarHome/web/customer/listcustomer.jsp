@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <html>
@@ -52,16 +53,16 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<td background="../images/tab/bg.gif">&nbsp;</td>
 	</tr>
 </table>
-<form action="listResume.do?page=1" method="post">
+<form action="customer_list" method="post">
 <table class="maintable" border="0" width="100%" cellspacing="0">
 	<tr>
 	  <td width="3%" class="searchfontlist">&nbsp;</td>
-		<td width="54%">　　　　　　　　　　　　　　客户信息：
+		<td width="54%">　　　　　　　　　　　　　　客户姓名：
 		  <label>
-		  <input type="text" name="textfield">
+		  <input type="text" name="client.clientname" />
       </label></td>
 		<td width="34%" class="searchfontlist"><label>
-		  <input type="button" name="Submit3" value="查询">
+		  <input type="submit" value="查询">
 	  </label></td>
 		<td width="3%">&nbsp;</td>
 		<td width="3%">&nbsp;</td>
@@ -69,7 +70,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	</tr>
 </table>
 </form>
-<form action="../customer/listcustomer.jsp" method="post">
+<form action="/customer/customer_delete" method="post">
   <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
     <tr>
       <th width="73">选择</th>
@@ -81,28 +82,30 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
       <th width="87">住址</th>
       <th width="147">修改</th>
     </tr>
+	  <c:forEach items="${clientList}" var="client">
       <tr class=Off onMouseOut="this.className='Off'"
 		onMouseOver="this.className='Up'">
         <td height="24"><div align="center">
-            <input type="checkbox" name="checkbox"
+            <input type="checkbox" name="clientList.clientid" value="${client.clientid}"
 			>
         </div></td>
-        <td><div align="center">001</div></td>
-        <td><div align="center">蔡毅</div></td>
-        <td><div align="center">男</div></td>
-        <td><div align="center">15927500600</div></td>
-        <td><div align="center">433100</div></td>
-        <td><div align="center">武汉</div></td>
-        <td><div align="center"><a href="../customer/updatacustomer.jsp">修改</a></div></td>
+        <td><div align="center">${client.clientno}</div></td>
+        <td><div align="center">${client.clientname}</div></td>
+        <td><div align="center">${client.clientgender}</div></td>
+        <td><div align="center">${client.clienttel}</div></td>
+        <td><div align="center">${client.clientidcard}</div></td>
+        <td><div align="center">${client.clientaddress}</div></td>
+        <td><div align="center"><a href="../customer/customer_edit?client.clientid=${client.clientid}">修改</a></div></td>
       </tr>
+	  </c:forEach>
   </table>
   <table width="100%">
 	<tr>
 		<td height="40">
 		<div align="left"><input type="checkbox" name="checkbox4"
 			value="checkbox"> 全选 <input type="button" name="Submit"
-			value="添加客户" onClick="window.location.href='addcustomer.jsp'">
-			 <input type="submit" name="Submit" value="删除客户">
+			value="添加客户" onClick="window.location.href='/customer/customer_preadd'">
+			 <input type="submit" value="删除客户">
 		</div>
 		<div align="center"></div>
 		<div align="center"></div>

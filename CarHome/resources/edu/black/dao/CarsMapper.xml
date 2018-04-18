@@ -433,15 +433,15 @@
   </select>
 
   <select id="getAllCarNames" resultType="String" >
-    select cars.carname from cars,store where store.carid = cars.carid
+    select  distinct cars.carname from cars,store where store.carid = cars.carid
   </select>
   <select id="getAllCarModel" resultType="String" parameterType="String">
-    select cars.carmodel from cars,store where store.carid = cars.carid and cars.carmodel=#{model}
+    select  distinct cars.carmodel from cars,store where store.carid = cars.carid and cars.carname=#{model}
   </select>
   <select id="getAllCarNoByModel" resultType="Integer" parameterType="String">
-    select cars.carid from cars,store where store.carid = cars.carid and cars.carmodel=#{model}
+    select distinct cars.carid from cars,store where store.carid = cars.carid and cars.carmodel=#{model}
   </select>
   <select id="getAllCarNoByName" resultType="Integer" parameterType="String">
-    select cars.carid from cars,store where store.carid = cars.carid and cars.carname=#{name}
+    select  distinct cars.carid from cars,store where store.carid = cars.carid and cars.carname=#{name}
   </select>
 </mapper>

@@ -99,7 +99,7 @@ public interface CarsMapper {
      */
     int updateByPrimaryKey(Cars record);
     List<String> getAllCarNames();
-    List<String> getAllCarModel(String model);
+    List<String> getAllCarModel(String name);
     List<Integer> getAllCarNoByModel(String model);
     List<Integer> getAllCarNoByName(String name);
 }

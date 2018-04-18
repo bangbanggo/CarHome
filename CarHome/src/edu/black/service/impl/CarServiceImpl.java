@@ -123,7 +123,7 @@ public class CarServiceImpl implements CarService {
     public List<String> getAllCarModel(String name) {
         SqlSession session = factory.openSession();
         CarsMapper carsMapper = session.getMapper(CarsMapper.class);
-        names = carsMapper.getAllCarNames();
+        names = carsMapper.getAllCarModel(name);
         session.close();
         return names;
     }

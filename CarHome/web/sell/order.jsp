@@ -48,12 +48,32 @@ function chengemodel(thisinput) {
     $.ajax({
         url:"sell/query_json_getmodel?name="+thisinput.value,
         success:function (date) {
-            var date = JSON.parse(date);
-            var html = "<option value='data[i]'>请选择</option>";
+            var data = JSON.parse(date);
+            var html = "<option value='"+data[i]+"'>请选择</option>";
             for (var i=0;i<data.length;i++){
-                html +="<option value='data[i]'>"+data[i]+"</option>";
+                html +="<option value='"+data[i]+"'>"+data[i]+"</option>";
             }
             $("#model").html(html);
+        }
+    });
+}
+function chengecarno(thisinput) {
+    $.ajax({
+        url:"sell/query_json_getcarno?name="+thisinput.value,
+        success:function (date) {
+            var data = JSON.parse(date);
+            var html = "";
+            if (data.length>1){
+                for (var i=0;i<data.length;i++){
+                    html +="<input type='radio' name='order.ordercarno' value='"+data[i]+"'>"+data[i]+"";
+                }
+                $("#carnotd").html(html);
+            }else {
+                html +="<input type='text' name='order.ordercarno' value='"+data[0]+"' readonly/>";
+                $("#carnotd").html(html);
+            }
+
+
         }
     });
 }
@@ -97,7 +117,7 @@ function chengemodel(thisinput) {
     </tr>
     <tr>
       <td><div align="center">车编号</div></td>
-      <td><input type="text" id="linkPhone" name="order.ordercarid" readonly/></td>
+      <td id="carnotd"><input type="text" id="linkPhone" name="order.ordercarid" id="carno" readonly/></td>
       <td><div align="center">车名称</div></td>
         <td>
             <select type="text" id="age" name="age" onchange="chengemodel(this)">
@@ -113,7 +133,7 @@ function chengemodel(thisinput) {
       <td><input type="text" name="order.orderprice" id="specialty"></td>
       <td><div align="center">车类型</div></td>
         <td>
-            <select type="text" name="school" id="model">
+            <select type="text" name="school" id="model" onchange="chengecarno(this)">
                 <option>请选择</option>
             </select>
         </td>

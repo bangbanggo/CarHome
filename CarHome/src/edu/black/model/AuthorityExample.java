@@ -393,6 +393,12 @@ public class AuthorityExample {
             addCriterion("authorityAction not between", value1, value2, "authorityaction");
             return (Criteria) this;
         }
+
+        public Criteria andAuthoritylevelEqualTo(Integer value1) {
+            addCriterion("authoritylevel = ", value1, "authoritylevel");
+            return (Criteria) this;
+        }
+
     }
 
     /**

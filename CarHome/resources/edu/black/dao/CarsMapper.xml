@@ -444,4 +444,7 @@
   <select id="getAllCarNoByName" resultType="Integer" parameterType="String">
     select  distinct cars.carid from cars,store where store.carid = cars.carid and cars.carname=#{name}
   </select>
+  <select id="selectByCarNo" resultType="edu.black.model.Cars" parameterType="java.lang.String">
+    select cars.* from cars where cars.carno = #{0}
+  </select>
 </mapper>

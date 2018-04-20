@@ -93,4 +93,6 @@ public interface FeedbacksMapper {
      * @mbg.generated Mon Apr 16 21:19:55 CST 2018
      */
     int updateByPrimaryKey(Feedbacks record);
+
+    List<Feedbacks> selectByFeedback(Feedbacks feedback);
 }

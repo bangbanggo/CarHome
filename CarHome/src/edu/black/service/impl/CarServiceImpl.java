@@ -33,14 +33,25 @@ public class CarServiceImpl implements CarService {
     public boolean addCars(Cars car, Store store) {
         SqlSession session = factory.openSession();
         CarsMapper mapper = session.getMapper(CarsMapper.class);
-        boolean result = mapper.insertSelective(car)==1?true:false;
+        Cars temp = this.checkCarNo(car.getCarno());
+        boolean result =true;
+        if (temp==null){
+            result= mapper.insertSelective(car)==1?true:false;
+        }else {
+            car.setCarid(temp.getCarid());
+        }
         if (!result) {
             session.rollback();
         }else {
             store.setCarid(car.getCarid());
+            store.setPrewarehouseid(store.getWarehouseid());
             StoreMapper storeMapper = session.getMapper(StoreMapper.class);
-            boolean rs = storeMapper.insertSelective(store)==1?true:false;
-            if (!rs){
+            if (storeMapper.check(store)==1){
+                result = storeMapper.updatewarehouse(store)==1?true:false;
+            }else {
+                result = storeMapper.insertSelective(store)==1?true:false;
+            }
+            if (!result){
                 session.rollback();
             }else {
                 session.commit();
@@ -144,5 +155,14 @@ public class CarServiceImpl implements CarService {
         ids = carsMapper.getAllCarNoByName(name);
         session.close();
         return ids;
+    }
+
+    @Override
+    public Cars checkCarNo(String carno) {
+        SqlSession session = factory.openSession();
+        CarsMapper carsMapper = session.getMapper(CarsMapper.class);
+        Cars car= carsMapper.selectByCarNo(carno);
+        session.close();
+        return car;
     }
 }

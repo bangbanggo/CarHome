@@ -2,6 +2,32 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+
+    <package name="default" namespace="/" strict-method-invocation="false" extends="struts-default">
+        <interceptors>
+            <interceptor name="LoginInterceptor" class="edu.black.action.LoginInterceptor"></interceptor>
+        </interceptors>
+        <default-action-ref name="check"></default-action-ref>
+        <global-results>
+            <result name="login">/login.jsp</result>
+        </global-results>
+        <action name="check" class="edu.black.action.LogAction" method="check">
+            <result name="success" >/main.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="menu" class="edu.black.action.LogAction" method="check">
+            <result name="success">/trees/mainmenu.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="logout" class="edu.black.action.LogAction" method="logout">
+            <result name="success">/login.jsp</result>
+        </action>
+        <action name="login" class="edu.black.action.LogAction" method="login">
+            <result name="success" >/main.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+    </package>
+
     <package name="userAction" extends="struts-default" namespace="/system" strict-method-invocation="false">
         <action name="list*" class="edu.black.action.system.SystemAction" method="list{1}">
             <result name="success">list{1}.jsp</result>
@@ -69,6 +95,8 @@
         <action name="order_*" class="edu.black.action.OrderAction" method="{1}">
             <result name="success">order.jsp</result>
             <result name="order">order.jsp</result>
+            <result name="list">listorder.jsp</result>
+            <result name="gotolist" type="redirectAction">order_list</result>
         </action>
         <action name="query_json_*" class="edu.black.action.Query_Json_Action" method="{1}"/>
     </package>
@@ -79,6 +107,20 @@
             <result name="error">/error.jsp</result>
             <result name="add">addcustomer.jsp</result>
             <result name="success">listcustomer.jsp</result>
+        </action>
+        <action name="factory_*" class="edu.black.action.FacotryAction" method="{1}">
+            <result name="update">updatafactory.jsp</result>
+            <result name="list" type="redirectAction">factory_list</result>
+            <result name="error">/error.jsp</result>
+            <result name="add">addfactory.jsp</result>
+            <result name="success">listfactory.jsp</result>
+        </action>
+        <action name="visit_*" class="edu.black.action.VisitAction" method="{1}">
+            <result name="update">updatafactory.jsp</result>
+            <result name="list" type="redirectAction">visit_list</result>
+            <result name="error">/error.jsp</result>
+            <result name="add">addvisit.jsp</result>
+            <result name="success">visit.jsp</result>
         </action>
     </package>
 </struts>

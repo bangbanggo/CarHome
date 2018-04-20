@@ -15,7 +15,7 @@
 			cellspacing="0">
 			<tr>
 				<td
-					background="images/topBarBg.gif"
+					background="../images/topBarBg.gif"
 					height="23">
 					<strong>
 						<div class="searchfontlist">
@@ -35,30 +35,29 @@
 				<td
 					width="25"
 					height="24"
-					background="images/tab/firstLeftSel.gif">&nbsp;
+					background="../images/tab/firstLeftSel.gif">&nbsp;
 					
 				</td>
 				<td
 					width="100"
-					background="images/tab/middleSel.gif">
+					background="../images/tab/middleSel.gif">
 					<div align="center">
 						<span class="tabTitleSel">请填写内容</span>
 					</div>
 				</td>
 				<td
 					width="50"
-					background="images/tab/lastRightSel.gif">&nbsp;
+					background="../images/tab/lastRightSel.gif">&nbsp;
 					
 				</td>
-				<td background="images/tab/bg.gif">&nbsp;
+				<td background="../images/tab/bg.gif">&nbsp;
 					
 				</td>
 			</tr>
 		</table>
 		<form
-			action="../customer/listfactory.jsp"
-			method="post"
-			onSubmit="return subUser()">
+			action="/customer/factory_add"
+			method="post">
 			<table
 				class="maintable"
 				width="100%"
@@ -71,10 +70,9 @@
 						width="201"
 						height="24">
 						<input
-							name="username"
+							name="factory.factoryno"
 							type="text"
 							class="inputcontent"
-							id="username"
 							size="20"
 							readonly="true"></td>
 					<td width="473">
@@ -86,10 +84,9 @@
 							厂商名：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="factory.factoryname"
 							type="text"
 							class="inputcontent"
-							id="text"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
@@ -102,10 +99,9 @@
 							厂商联系人：										</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="factory.factorylinkman"
 							type="text"
 							class="inputcontent"
-							id="text"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
@@ -119,10 +115,9 @@
 							厂商联系电话：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="factory.factorylinktel"
 							type="text"
 							class="inputcontent"
-							id="text"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
@@ -134,7 +129,7 @@
 							厂商邮编：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="factory.factorymailcode"
 							type="text"
 							class="inputcontent"
 							id="text"
@@ -149,10 +144,9 @@
 						<div align="right">
 				  厂商地址：						</div>					</td>
 				  <td height="24"><input
-							name="name"
+							name="factory.factoryaddress"
 							type="text"
 							class="inputcontent"
-							id="name"
 							size="20"></td>
 					<td height="24">
 														</td>
@@ -191,7 +185,7 @@
 					<td
 						height="30"
 						colspan="5"
-						background="images/tab/bg.gif"></td>
+						background="../images/tab/bg.gif"></td>
 				</tr>
 			</table>
 			

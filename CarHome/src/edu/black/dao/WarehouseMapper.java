@@ -56,6 +56,7 @@ public interface WarehouseMapper {
     List<Warehouse> selectByExample(WarehouseExample example);
     List<Warehouse> selectCarsInWarehouse();
     List<Warehouse> selectByCars(Cars car);
+    List<Warehouse> selectByCarsOnlyWarehouse(Cars car);
     List<Warehouse> selectByWarehouse(Warehouse warehouse);
 
     /**

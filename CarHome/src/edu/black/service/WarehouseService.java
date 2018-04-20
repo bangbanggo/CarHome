@@ -15,4 +15,5 @@ public interface WarehouseService {
     public List<Warehouse> queryAllCarsInWarehosue();
     public List<Warehouse> queryByCars(Cars cars);
     public List<Warehouse> queryByWarehouse(Warehouse warehouse);
+    public List<Warehouse> queryByCarsOnlyWarehosue(Cars cars);
 }

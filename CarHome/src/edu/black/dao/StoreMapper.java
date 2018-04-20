@@ -66,5 +66,6 @@ public interface StoreMapper {
     int check(Store store);
     int updatewarehouse(Store store);
     int insertstoreitem(Store store);
+    int updateOrderInStore(Store store);
 
 }

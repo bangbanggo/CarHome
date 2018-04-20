@@ -108,4 +108,14 @@ public class WarehouseServiceImpl implements WarehouseService {
         session.close();
         return list;
     }
+
+    @Override
+    public List<Warehouse> queryByCarsOnlyWarehosue(Cars car) {
+        List<Warehouse> list = null;
+        SqlSession session = factory.openSession();
+        WarehouseMapper mapper = session.getMapper(WarehouseMapper.class);
+        list = mapper.selectByCarsOnlyWarehouse(car);
+        session.close();
+        return list;
+    }
 }

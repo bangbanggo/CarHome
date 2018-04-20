@@ -107,6 +107,15 @@
     and cars.carmodel like "%${carmodel}%"
     </if>
   </select>
+  <select id="selectByCarsOnlyWarehouse" resultMap="BaseResultMap" parameterType="edu.black.model.Cars">
+    select warehouse.* from cars,store,warehouse where store.carid = cars.carid  and store.warehouseid = warehouse.warehouseid
+    <if test="carname!=null">
+      and cars.carname  = #{carname}
+    </if>
+     <if test="carmodel!=null">
+    and cars.carmodel like "%${carmodel}%"
+    </if>
+  </select>
   <select id="selectByWarehouse" resultMap="BaseResultMap" parameterType="edu.black.model.Warehouse">
     select cars.*,amount,warehouse.* from cars,store,warehouse where store.carid = cars.carid  and store.warehouseid = warehouse.warehouseid
     <if test="warehouseid!=null">

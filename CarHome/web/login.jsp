@@ -43,7 +43,7 @@
         marginheight="0">
 <form
         method="post"
-        action="index.html">
+        action="login">
     <table
             width="1002"
             height="583"
@@ -74,7 +74,6 @@
         <tr>
             <td>
                 <table
-                        id="Table_01"
                         width="1002"
                         height="35"
                         border="0"
@@ -91,7 +90,7 @@
                                 width="82"
                                 background="images/login1_02_06.gif">
                             <input
-                                    name="username"
+                                    name="user.useraccessname"
                                     type="text"
                                     class="inputlogin"
                                     id="username"
@@ -104,7 +103,7 @@
                                 background="images/login1_02_06.gif">
                             <input
                                     class="inputlogin"
-                                    name="password"
+                                    name="user.useraccesspassword"
                                     type="password"
                                     size="10">								</td>
                         <td

@@ -89,6 +89,6 @@ public class ClientServiceImpl  implements ClientService {
         mapper.deleteByExample(example);
         session.commit();
         session.close();
-        return false;
+        return true;
     }
 }

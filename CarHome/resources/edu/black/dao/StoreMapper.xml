@@ -210,4 +210,7 @@
   <insert id="insertstoreitem" parameterType="edu.black.model.Store">
     insert into store (warehouseid,carid,amount) values (#{warehouseid},#{carid},#{amount})
   </insert>
+  <update id="updateOrderInStore" parameterType="edu.black.model.Store">
+    update store set amount=amount-#{amount} where carid = #{carid} and warehouseid = #{warehouseid}
+  </update>
 </mapper>

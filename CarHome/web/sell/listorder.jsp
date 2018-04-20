@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <html>
@@ -7,6 +8,7 @@
 <title>销售管理</title>
 		  <script language="javascript" type="text/javascript" src="../js/birthday.js"></script>
 <link type="text/css" rel="stylesheet" href="../css/public.css">
+	<script src="../js/jquery.min.js" type="text/javascript"></script>
 <script language="JavaScript" type="text/JavaScript">
 <!--
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
@@ -53,34 +55,40 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<td background="../images/tab/bg.gif">&nbsp;</td>
 	</tr>
 </table>
-<form action="listResume.do?page=1" method="post">
+<form action="order_list" method="post">
 <table class="maintable" border="0" width="100%" cellspacing="0">
 	<tr>
 		<td width="22%" height="48" class="searchfontlist">
 		<div align="right">
 		  <label>
-		  <select name="select">
-		    <option>订单号</option>
-		    <option>客户号</option>
-		    <option>车编号</option>
-		    <option>车名称</option>
+		  <select name="select" onchange="chang_input_name(this)">
+		    <option value="-1">请选择</option>
+			<option value="order.orderid">订单号</option>
+		    <option value="order.orderclientid">客户号</option>
+		    <option value="order.ordercarid">车编号</option>
+		    <option value="order.car.carname">车名称</option>
+		    <option value="order.ordercreatedate">销售时间</option>
 	      </select>
+			  <script type="text/javascript">
+					function chang_input_name(thisfiled){
+						document.getElementById("area").name=thisfiled.value;
+					}
+			  </script>
 		  </label>
 		  ：</div>		</td>
 		<td width="19%">
 		<div align="left">
-		  <input type='text' name='menu1'/>
+		  <input type='text' name='-1' id="area"/>
 		</div>		</td>
 		<td width="5%">&nbsp;</td>
-	  <td width="54%"><label>销售日期：
-          <input type="text" name="mailingTime" id="mailingTime" onClick="show_cele_date(this,'','',this)"> 　　　
-          <input type="button" name="Submit3" value="查询">
+	  <td width="54%"><label>　　
+          <input type="submit" name="Submit3" value="查询" />
 </label></td>
 	</tr>
 </table>
 <p>&nbsp;</p>
 </form>
-<form action="deleteResume.do" method="post">
+<form action="order_delete" method="post">
 <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
 	<tr>
 		<th width="50"><label>
@@ -96,93 +104,24 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<th width="90">销售日期</th>
 		<th width="69">销售状态</th>
 	</tr>
-	
+	<c:forEach items="${ordersList}" var="orders">
 	<tr class=Off onMouseOut="this.className='Off'"
 		onMouseOver="this.className='Up'">
 	  <td height="24"><div align="center">
-	    <input type="checkbox" name="checkbox22" value="checkbox">
+	    <input type="checkbox" name="ordersList.orderid" value="${orders.orderid}">
 	    </div></td>
-	  <td><div align="center">1</div></td>
-	  <td><div align="center">001</div></td>
-	  <td><div align="center">F001</div></td>
-	  <td><div align="center">宝马</div></td>
-	  <td><div align="center">11111</div></td>
-	  <td><div align="center">F001</div></td>
-	  <td><div align="center">上海</div></td>
-	  <td><div align="center">2005-01-01</div></td>
-	  <td><div align="center">已发货</div></td>
+	  <td><div align="center">${orders.orderid}</div></td>
+	  <td><div align="center">${orders.orderclientid}</div></td>
+	  <td><div align="center">${orders.ordercarid}</div></td>
+	  <td><div align="center">${orders.car.carname}</div></td>
+	  <td><div align="center">${orders.orderprice}</div></td>
+	  <td><div align="center">${orders.car.carmodel}</div></td>
+	  <td><div align="center">${orders.car.carto}</div></td>
+	  <td><div align="center">${orders.ordercreatedate}</div></td>
+	  <td><div align="center">${orders.orderstatus}</div></td>
 	</tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-      <td height="24"><div align="center">
-          <input type="checkbox" name="checkbox23" value="checkbox">
-      </div></td>
-	  <td><div align="center">2</div></td>
-	  <td><div align="center">002</div></td>
-	  <td><div align="center">BMW1</div></td>
-	  <td><div align="center">奔驰</div></td>
-	  <td><div align="center">2222</div></td>
-	  <td><div align="center">BMW1</div></td>
-	  <td><div align="center">北京</div></td>
-	  <td><div align="center">2007-01-12</div></td>
-	  <td><div align="center">路上</div></td>
-	</tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-      <td height="24"><div align="center">
-          <input type="checkbox" name="checkbox"
-			value="${RL.owenResumeId}">
-      </div></td>
-	  <td><div align="center">3</div></td>
-	  <td><div align="center">003</div></td>
-	  <td><div align="center">s660</div></td>
-	  <td><div align="center">法拉利</div></td>
-	  <td><div align="center">523</div></td>
-	  <td><div align="center">s660</div></td>
-	  <td><div align="center">重庆</div></td>
-	  <td><div align="center">2006-08-08</div></td>
-	  <td><div align="center">没发货</div></td>
-	</tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-	  <td height="24"><div align="center">
-	    <input type="checkbox" name="checkbox23" value="checkbox">
-	    </div></td>
-	  <td><div align="center">4</div></td>
-	  <td><div align="center">004</div></td>
-	  <td><div align="center">BMW2</div></td>
-	  <td><div align="center">奔驰</div></td>
-	  <td><div align="center">1232</div></td>
-	  <td><div align="center">BMW2</div></td>
-	  <td><div align="center">香港</div></td>
-	  <td><div align="center">2007-03-12</div></td>
-	  <td><div align="center">已到达</div></td>
-	</tr>
-	<tr class=Off onMouseOut="this.className='Off'"
-		onMouseOver="this.className='Up'">
-		<td height="24">
-		  <div align="center">
-		    <input type="checkbox" name="checkbox"
-			value="${RL.owenResumeId}">
-		  </div></td>
-		<td><div align="center">5</div></td>
-		<td>
-	      <div align="center">005</div></td>
-		<td>
-          <div align="center">s600</div></td>
-		<td>
-	      <div align="center">宝马</div></td>
-		<td>
-          <div align="center">5213</div></td>
-		<td>
-	      <div align="center">s600</div></td>
-		<td>
-	      <div align="center">武汉</div></td>
-		<td>
-	      <div align="center">2008-08-08</div></td>
-		<td>
-	      <div align="center">没发货</div></td>
-	</tr>
+	</c:forEach>
+
 </table>
 <table width="100%">
 	<tr>
@@ -190,8 +129,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div align="left">
 		  <label></label> 
 		  
-          <input type="button" name="Submit"
-			value="删除" onClick="window.location.href='listorder.jsp'">
+          <input type="submit" name="Submit"
+			value="删除">
 		</div>
 		<div align="center"></div>
 		<div align="center"></div>		</td>

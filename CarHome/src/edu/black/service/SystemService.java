@@ -44,7 +44,7 @@ public interface SystemService {
      * @return
      */
     public List<Users> queryAllUsers();
-    public List<Authority> queryAllAuthority();
+    public List<Authority> queryAllAuthority(Integer level);
     public List<Roles> queryAllRoles();
 
     /**
@@ -63,5 +63,8 @@ public interface SystemService {
     public boolean updateAuthority(Authority authority);
     public boolean updateRoles(Roles Roles);
     public boolean updateUsers(Users Users);
+
+    public Menu getMenuByUser(int userid,String username);
+    public List<Authority> getTopMenu();
 
 }

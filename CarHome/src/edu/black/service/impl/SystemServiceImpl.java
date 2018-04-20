@@ -32,7 +32,7 @@ public class SystemServiceImpl implements SystemService {
     public boolean addAuthority(Authority authority) {
         SqlSession session  = factory.openSession();
         AuthorityMapper mapper = session.getMapper(AuthorityMapper.class);
-        boolean result = mapper.insert(authority)==1?true:false;
+        boolean result = mapper.insertSelective(authority)==1?true:false;
         session.commit();
         session.close();
         return result;
@@ -189,10 +189,15 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
-    public List<Authority> queryAllAuthority() {
+    public List<Authority> queryAllAuthority(Integer level) {
         SqlSession session = factory.openSession();
         AuthorityMapper mapper =  session.getMapper(AuthorityMapper.class);
-        List<Authority> list = mapper.selectByExample(null);
+        AuthorityExample example = new AuthorityExample();
+        example.setOrderByClause("authoritylevel");
+        if (level!=null){
+            example.createCriteria().andAuthoritylevelEqualTo(level);
+        }
+        List<Authority> list = mapper.selectByExample(example);
         session.close();
         return list;
     }
@@ -249,7 +254,78 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
-    public boolean updateUsers(Users Users) {
-        return false;
+    public boolean updateUsers(Users users) {
+        SqlSession session = factory.openSession();
+        UsersMapper usersMapper = session.getMapper(UsersMapper.class);
+        if (usersMapper.updateByPrimaryKeySelective(users)==1){
+            UsersroleMapper usersroleMapper = session.getMapper(UsersroleMapper.class);
+            UsersroleExample example = new UsersroleExample();
+            List<Integer> list = new ArrayList<>();
+            list.add(users.getUserid());
+            example.createCriteria().andUseridIn(list);
+            if (usersroleMapper.deleteByExample(example)>0){
+                boolean result = true;
+                for (Roles roles:users.getRoles()){
+                    Usersrole usersrole = new Usersrole();
+                    usersrole.setUserid(users.getUserid());
+                    usersrole.setRoleid(roles.getRoleid());
+                    if (usersroleMapper.insertSelective(usersrole)!=1){
+                        session.rollback();
+                        result = false;
+                        break;
+                    }
+                }
+                if (result){
+                    session.commit();
+                }
+            }else {
+                session.rollback();
+            }
+        }else {
+            session.rollback();
+        }
+        return true;
+    }
+
+    @Override
+    public Menu getMenuByUser(int userid, String username) {
+        Users user = null;
+        Menu menu = null;
+        SqlSession session = factory.openSession();
+        UsersMapper  mapper = session.getMapper(UsersMapper.class);
+        UsersExample example = new UsersExample();
+        example.createCriteria().andUseraccessnameEqualTo(username);
+        example.createCriteria().andUseridEqualTo(userid);
+        List<Users> list = mapper.selectByExample(example);
+        if (list.size()==1){
+            user = list.get(0);
+            Set<Integer> ids = new HashSet<>();
+            for (Roles roles:user.getRoles()){
+                for (Authority authority:roles.getAuthorities()){
+                    ids.add(authority.getAuthorityparentid());
+                }
+            }
+
+            List<Integer> idslist = new ArrayList<>();
+            for (Integer id:ids){
+                idslist.add(id);
+            }
+                AuthorityMapper authorityMapper = session.getMapper(AuthorityMapper.class);
+            AuthorityExample authorityExample = new AuthorityExample();
+            authorityExample.createCriteria().andAuthorityidIn(idslist);
+            List<Authority> MainMenu = authorityMapper.selectByExample(authorityExample);
+            menu = new Menu(user,MainMenu);
+        }
+        session.close();
+        return menu;
+    }
+
+    @Override
+    public List<Authority> getTopMenu() {
+        SqlSession session = factory.openSession();
+        AuthorityMapper mapper = session.getMapper(AuthorityMapper.class);
+        List<Authority> list = mapper.selectTopMenu();
+        session.close();
+        return list;
     }
 }

@@ -10,6 +10,8 @@
     <id column="authorityId" jdbcType="INTEGER" property="authorityid" />
     <result column="authorityName" jdbcType="VARCHAR" property="authorityname" />
     <result column="authorityAction" jdbcType="VARCHAR" property="authorityaction" />
+    <result column="authorityparentid" jdbcType="INTEGER" property="authorityparentid"/>
+    <result column="authoritylevel" jdbcType="INTEGER" property="authoritylevel"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -97,7 +99,7 @@
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    authority.*
     from authority
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -165,6 +167,12 @@
       <if test="authorityaction != null">
         authorityAction,
       </if>
+      <if test="authoritylevel != null">
+        authoritylevel,
+      </if>
+      <if test="authorityparentid != null">
+        authorityparentid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="authorityid != null">
@@ -175,6 +183,12 @@
       </if>
       <if test="authorityaction != null">
         #{authorityaction,jdbcType=VARCHAR},
+      </if>
+      <if test="authoritylevel != null">
+        #{authoritylevel,jdbcType=INTEGER},
+      </if>
+      <if test="authorityparentid != null">
+        #{authorityparentid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -253,4 +267,7 @@
       authorityAction = #{authorityaction,jdbcType=VARCHAR}
     where authorityId = #{authorityid,jdbcType=INTEGER}
   </update>
+  <select id="selectTopMenu" resultType="edu.black.model.Authority">
+    select * from authority where authoritylevel = 1
+  </select>
 </mapper>

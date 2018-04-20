@@ -1,11 +1,11 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="../css/public.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-</script>
+</head>
 
 	<body>
 		
@@ -56,9 +56,8 @@
 			</tr>
 		</table>
 		<form
-			action="listuser.jsp"
-			method="post"
-			onSubmit="return subUser()">
+			action="visit_add"
+			method="post">
 			<table
 				class="maintable"
 				width="100%"
@@ -70,13 +69,15 @@
 				  <td
 						width="201"
 						height="24">
-						<input
-							name="username"
+						<select
+							name="feedback.feedbackclientid"
 							type="text"
 							class="inputcontent"
-							id="username"
-							size="20"
-							readonly="true"></td>
+							id="username" style="width:150px">
+							<c:forEach items="${clientsList}" var="client">
+								<option value="${client.clientid}">${client.clientname}</option>
+							</c:forEach>
+						</select></td>
 					<td width="473">
 														</td>
 				</tr>
@@ -86,10 +87,9 @@
 							回访时间：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
-							type="text"
+							name="feedback.feedbackdate"
+							type="date"
 							class="inputcontent"
-							id="text"
 							size="20"
 							maxlength="16" /></td>
 					<td height="24">
@@ -102,7 +102,7 @@
 						<div align="right">回访事件：						</div>					</td>
 				  <td height="24">
 						<input
-							name="text"
+							name="feedback.feedbackevent"
 							type="text"
 							class="inputcontent"
 							id="text"
@@ -117,7 +117,7 @@
 						<div align="right">
 							回访记录：						</div>					</td>
 				  <td height="24"><label>
-						<textarea name="textarea"></textarea>
+						<textarea name="feedback.feedbacklog"></textarea>
 						</label></td>
 					<td height="24">
 															</td>
@@ -132,9 +132,9 @@
 						width="70"></td>
 					<td width="65">
 						<input
-							type="button"
+							type="submit"
 							name="Submit"
-							value="确定" onClick="window.location.href='visit.jsp'">
+							value="确定">
 					</td>
 					<td width="96">
 						<div align="center">

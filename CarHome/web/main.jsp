@@ -16,7 +16,7 @@
     <frameset id="middle" cols="190,7,*" border="0" frameborder="0">
         <frameset rows="23,*" border="0" frameborder="0">
             <frame name="modNavTop" frameborder="0" src="modNavTop.jsp" noresize="noresize" scrolling="no" marginheight="0" marginwidth="0" />
-            <frame name="modNav" frameborder="0" src="trees/mainmenu.jsp" noresize="noresize" scrolling="auto" marginheight="0" marginwidth="0" />
+            <frame name="modNav" frameborder="0" src="menu" noresize="noresize" scrolling="auto" marginheight="0" marginwidth="0" />
         </frameset>
         <frame name="splitor" frameborder="0" src="splitor.jsp" noresize="noresize" scrolling="no" marginheight="0" marginwidth="0" />
         <frame name="workspace" frameborder="0" src="welcome.jsp" scrolling="yes" marginheight="0" marginwidth="0" />

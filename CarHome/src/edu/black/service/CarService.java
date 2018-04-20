@@ -16,4 +16,5 @@ public interface CarService {
     public List<String> getAllCarModel(String name);
     public List<Integer> getAllCarNoByModel(String model);
     public List<Integer> getAllCarNoByName(String name);
+    public Cars checkCarNo(String carno);
 }

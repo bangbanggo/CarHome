@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -15,6 +16,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </script>
 </head>
 <script language="javascript" type="text/javascript">
+
         var popUp; 
 		function openwin(idname)
 		{
@@ -51,16 +53,19 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<td background="../images/tab/bg.gif">&nbsp;</td>
 	</tr>
 </table>
-<form action="listResume.do?page=1" method="post">
+<form action="factory_list" method="post">
 <table class="maintable" border="0" width="100%" cellspacing="0">
 	<tr>
 	  <td width="3%" class="searchfontlist">&nbsp;</td>
-		<td width="41%">　　　　　　　厂商信息：
+		<td width="41%">　　　　　　　厂商名称：
 		  <label>
-		  <input type="text" name="textfield">
+		  <input type="text" name="factory.factoryname" />　
+			  厂商地址：
+		  <label>
+		  <input type="text" name="factory.factoryaddress" />
       </label></td>
 	  <td width="47%" class="searchfontlist"><label>
-	    <input type="button" name="Submit3" value="查询">
+	    <input type="submit"  value="查询">
 	  </label></td>
 		<td width="3%">&nbsp;</td>
 		<td width="3%">&nbsp;</td>
@@ -68,7 +73,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	</tr>
 </table>
 </form>
-<form action="deleteResume.do" method="post">
+<form action="factory_delete" method="post">
   <table class="tablelistcontent" width="100%" border="1" cellspacing="1">
     <tr>
       <th width="73">选择</th>
@@ -80,20 +85,21 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
       <th width="87">厂商地址</th>
       <th width="147">修改</th>
     </tr>
+	  <c:forEach items="${factoryList}" var="factory">
       <tr class=Off onMouseOut="this.className='Off'"
 		onMouseOver="this.className='Up'">
         <td height="24"><div align="center">
-            <input type="checkbox" name="checkbox"
-			>
+            <input type="checkbox" name="factoryList.factoryid" value="${factory.factoryid}" />
         </div></td>
-        <td><div align="center">001</div></td>
-        <td><div align="center">剑锋</div></td>
-        <td><div align="center">蔡毅</div></td>
-        <td><div align="center">15927500600</div></td>
-        <td><div align="center">433100</div></td>
-        <td><div align="center">武汉</div></td>
-        <td><div align="center"><a href="../customer/updatafactory.jsp">修改</a></div></td>
+        <td><div align="center">${factory.factoryid}</div></td>
+        <td><div align="center">${factory.factoryname}</div></td>
+        <td><div align="center">${factory.factorylinkman}</div></td>
+        <td><div align="center">${factory.factorylinktel}</div></td>
+        <td><div align="center">${factory.factorymailcode}</div></td>
+        <td><div align="center">${factory.factoryaddress}</div></td>
+        <td><div align="center"><a href="factory_edit?facotry.factoryid=${factory.factoryid}">修改</a></div></td>
       </tr>
+	  </c:forEach>
   </table>
   <table width="100%">
 	<tr>

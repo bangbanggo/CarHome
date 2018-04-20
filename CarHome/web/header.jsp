@@ -99,7 +99,7 @@
                 <td valign="bottom"><img src="images/left_bottom.gif" width="4" height="4" /></td>
                 <td><img src="images/home.gif" width="54" height="21" /></td>
                 <td><img src="images/help.gif" width="54" height="21" onClick="javascript:alert('请参考使用说明!');"/></td>
-                <td><a href="" onFocus="this.blur();" target="_top" onClick="javascript:if(!confirm('您真的要退出吗？')){return false;}"><img src="images/exit.gif" width="52" height="21" border="0" /></a></td>
+                <td><a href="logout" onFocus="this.blur();" target="_top" onClick="javascript:if(!confirm('您真的要退出吗？')){return false;}"><img src="images/exit.gif" width="52" height="21" border="0" /></a></td>
                 <td valign="bottom"><img src="images/right_bottom.gif" width="4" height="4" /></td>
             </tr>
         </table></td>

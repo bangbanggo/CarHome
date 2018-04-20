@@ -102,4 +102,5 @@ public interface CarsMapper {
     List<String> getAllCarModel(String name);
     List<Integer> getAllCarNoByModel(String model);
     List<Integer> getAllCarNoByName(String name);
+    Cars selectByCarNo(String carname);
 }

@@ -32,7 +32,7 @@ public class SystemAction extends ActionSupport {
      * @return
      */
     public String listpur(){
-        authorityList = systemService.queryAllAuthority();
+        authorityList = systemService.queryAllAuthority(null);
         return SUCCESS;
     }
 
@@ -55,7 +55,7 @@ public class SystemAction extends ActionSupport {
     }
 
     public String preaddrole(){
-        authorityList = systemService.queryAllAuthority();
+        authorityList = systemService.queryAllAuthority(2);
         return SUCCESS;
     }
 
@@ -124,6 +124,14 @@ public class SystemAction extends ActionSupport {
         }
     }
 
+    public String updateuser(){
+        if (systemService.updateUsers(users)){
+            return SUCCESS;
+        }else {
+            return ERROR;
+        }
+    }
+
     /**
      * 进入更新页面
      * @return
@@ -134,7 +142,7 @@ public class SystemAction extends ActionSupport {
         return SUCCESS;
     }
     public String editrole(){
-        authorityList = systemService.queryAllAuthority();
+        authorityList = systemService.queryAllAuthority(2);
         roles = systemService.getRoles(id);
         return SUCCESS;
     }

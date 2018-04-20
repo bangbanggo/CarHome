@@ -93,4 +93,5 @@ public interface OrdersMapper {
      * @mbg.generated Mon Apr 16 21:19:55 CST 2018
      */
     int updateByPrimaryKey(Orders record);
+    List<Orders> selectOrdersByCarName(String carname);
 }

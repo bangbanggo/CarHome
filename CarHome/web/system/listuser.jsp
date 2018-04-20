@@ -70,7 +70,7 @@
         <input type="submit" name="Submit" value="删除">
           </div></td>
       <td width="50"><div align="center">
-        <input type="button" name="Submit" value="添加" onClick="window.location.href='preadduser'">
+        <input type="button" name="Submit" value="添加" onClick="window.location.href='preadduser'" />
       </div></td>
       <td width="86"><div align="center">
       </div></td>
